@@ -1,4 +1,6 @@
 #include "lib.h"
+#include "gameState.h"
+#include "gameOverState.h"
 
 #define POT A1
 

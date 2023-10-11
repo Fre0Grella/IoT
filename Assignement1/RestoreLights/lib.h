@@ -1,7 +1,3 @@
-//
-// Created by marco on 09/10/2023.
-//
-
 #ifndef RESTORELIGHTS_LIB_H
 #define RESTORELIGHTS_LIB_H
 

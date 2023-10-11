@@ -9,7 +9,7 @@ int setDifficulty(int pin) {
 
 bool start(int pin, long time) {
     long now = millis();
-    long delay = time - now;
+    long delay = now - time;
     if (delay >= 20) {
 
         int buttonState = digitalRead(pin);
@@ -19,9 +19,9 @@ bool start(int pin, long time) {
     }
 }
 
-void Idle(int pin, long time) {
+void idle(int pin, long time) {
     long now = millis();
-    long delay = time - now;
+    long delay = now - time;
 
     if (delay >= 15) {
         analogWrite(LED_PIN, currIntensity);

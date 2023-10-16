@@ -1,25 +1,42 @@
 #include "lib.h"
 #include "gameState.h"
 #include "gameOverState.h"
+#include "common.h"
 
-#define POT A1
 
-long pastTime;
 
 void setup() {
+  buttonPastTime = millis();
   pastTime = millis();
-  // put your setup code here, to run once:
+  Serial.begin(9600);
+  
+  pinMode(GOLED, OUTPUT);
+  
+  pinMode(LEDONE, OUTPUT);
+  pinMode(LEDTWO, OUTPUT);
+  pinMode(LEDTHREE, OUTPUT);
+  pinMode(LEDFOUR, OUTPUT);
+  
+  pinMode(BUTONE, INPUT);
+  pinMode(BUTTWO, INPUT);
+  pinMode(BUTTHREE, INPUT);
+  pinMode(BUTFOUR, INPUT);
   
 }
 
 void loop() {
-  idle(1,pastTime);
-  
-  int check = start(2,pastTime); 
-  if(check == 1) {
-  Serial.println(check);
+  switch(s)
+  {
+    case idle: 
+    	fading();
+      if(start()) {
+        s = play;
+      } 
+    	break;
+    case play:
+    	gameState();
+    	break;
+    case sleep:
+    	break;
   }
-  int read = setDifficulty(POT);
-  
-
 }

@@ -1,36 +1,32 @@
 #include "lib.h"
+#include "common.h"
 #include <arduino.h>
 
+long pTimeStart = millis();
 
-int setDifficulty(int pin) {
-    int raw = AnalogRead(pin);
+int setDifficulty() {
+    int raw = AnalogRead(DPOT);
     return raw/256;
 }
 
-bool start(int pin, long time) {
-    long now = millis();
-    long delay = now - time;
-    if (delay >= 20) {
+bool start() {
+    now = millis();
+    delay = buttonPastTime - now;
 
-        int buttonState = digitalRead(pin);
+    if (delay > 20) {
+        buttonPastTime = now;
+        int buttonState = digitalRead(BUTONE);
         if (buttonState == HIGH) {
             return true;
         }
     }
 }
 
-void idle(int pin, long time) {
-    long now = millis();
-    long delay = now - time;
-
-    if (delay >= 15) {
-        analogWrite(LED_PIN, currIntensity);
+void fading() {
+        analogWrite(GOLED, currIntensity);
         currIntensity = currIntensity + fadeAmount;
         if (currIntensity == 0 || currIntensity == 255) {
             fadeAmount = -fadeAmount ;
         }
-    }
+    delay(15);
 }
-//
-// Created by marco on 09/10/2023.
-//

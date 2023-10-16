@@ -2,16 +2,16 @@
 #include "common.h"
 #include <arduino.h>
 
-long pTimeStart = millis();
+
 
 int setDifficulty() {
-    int raw = AnalogRead(DPOT);
+    int raw = analogRead(DPOT);
     return raw/256;
 }
 
 bool start() {
-    now = millis();
-    delay = buttonPastTime - now;
+    long now = millis();
+    long delay = buttonPastTime - now;
 
     if (delay > 20) {
         buttonPastTime = now;

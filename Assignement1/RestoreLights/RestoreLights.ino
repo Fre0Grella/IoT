@@ -1,6 +1,5 @@
 #include "lib.h"
 #include "gameState.h"
-#include "gameOverState.h"
 #include "common.h"
 
 
@@ -28,8 +27,10 @@ void loop() {
   switch(s)
   {
     case idle: 
+      pTimeStart = millis();
     	fading();
       if(start()) {
+        dif = setDifficulty();
         s = play;
       } 
     	break;

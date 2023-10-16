@@ -31,7 +31,7 @@ void gameState() {
             if (delay < t3 && checkInput()) {
                 pastTime = now;
                 incScore();
-                g = turnOffLights;
+                g = settingUpLeds;
             } else {
                 g = gameOver;
             }
@@ -95,7 +95,6 @@ void readInput(int* correctSeq) {
         }
         buttonPastTime = now;
     }
-    return index;
         
 }
 

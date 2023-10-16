@@ -1,9 +1,6 @@
 #ifndef RESTORELIGHTS_LIB_H
 #define RESTORELIGHTS_LIB_H
 
-int fadeAmount = 5;
-int brightness;
-int currIntensity = 0;
 // Fading led waiting the start of the game.
 void fading();
 

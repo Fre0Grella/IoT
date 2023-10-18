@@ -1,12 +1,12 @@
-#include "lib.h"
-#include "gameState.h"
+#include <arduino.h>
+
 #include "common.h"
+#include "idle.h"
+#include "game.h"
+#include "sleep.h"
 
-
-
-void setup() {
-  buttonPastTime = millis();
-  pastTime = millis();
+void setup()
+{
   Serial.begin(9600);
   
   pinMode(GOLED, OUTPUT);
@@ -20,24 +20,22 @@ void setup() {
   pinMode(BUTTWO, INPUT);
   pinMode(BUTTHREE, INPUT);
   pinMode(BUTFOUR, INPUT);
-  
+
 }
 
-void loop() {
+void loop()
+{
   switch(s)
   {
     case idle: 
-      pTimeStart = millis();
-    	fading();
-      if(start()) {
-        dif = setDifficulty();
-        s = play;
-      } 
+    	pulse(); 
     	break;
     case play:
     	gameState();
     	break;
     case sleep:
+    	sleepMode();
     	break;
   }
+  delay(20);
 }

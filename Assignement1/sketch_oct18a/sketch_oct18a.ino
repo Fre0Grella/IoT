@@ -4,19 +4,20 @@
 
 #include <avr/sleep.h>
 
-#define DPOT A2
 
-#define GOLED 10
+#define DPOT A0
 
-#define BUTONE 9
-#define BUTTWO 8
-#define BUTTHREE 7
-#define BUTFOUR 6
+#define GOLED 6
 
-#define LEDONE 5
-#define LEDTWO 4
-#define LEDTHREE 3
-#define LEDFOUR 2
+#define BUTONE 3
+#define BUTTWO 4
+#define BUTTHREE 5
+#define BUTFOUR 2
+
+#define LEDONE 8
+#define LEDTWO 9
+#define LEDTHREE 10
+#define LEDFOUR 11
 
 const int butPin[] = {BUTONE, BUTTWO, BUTTHREE, BUTFOUR};
 const int ledPin[] = {LEDONE, LEDTWO, LEDTHREE, LEDFOUR};
@@ -231,7 +232,6 @@ void readInput() {
     if (delay >= 20) {
         while (i < numLeds) {
             if (digitalRead(butPin[i]) == HIGH) {
-              Serial.println(butPin[i]);
               bool isPresent = false;
               for (int a : corPatt) {
                 if (a == i) {
@@ -239,6 +239,7 @@ void readInput() {
                 }
               }
               if(!isPresent) {
+                digitalWrite(ledPin[i], HIGH);
                 corPatt[numLeds - index] = i;
                 index++;
                 i = numLeds;
@@ -255,8 +256,6 @@ bool checkInput() {
     bool check = true;
 
     for (int i = 0; i < numLeds; i++) {
-        Serial.print(pattern[i]);
-        Serial.println(corPatt[i]);
         if (pattern[i] != corPatt[i]) {
             check = false;
         }
@@ -272,6 +271,7 @@ void incScore() {
 }
 
 void gameLostMessage() {
+  lightsGoOff();
   analogWrite(GOLED, HIGH);
   pastTimeOver = millis();
   Serial.print("Game Over. Final Score: ");
@@ -279,10 +279,20 @@ void gameLostMessage() {
   g = gameOver;
 }
 
+void lightsGoOff() {
+  for (int i : ledPin) {
+    digitalWrite(i, LOW);
+  }
+}
+
 void lightsOn() {
   
   long now = millis();
   long delay = now - pastTimePlay;
+  
+  if (delay > T3) {
+    gameLostMessage();
+  }
   
   if (index < numLeds + 1) {
     readInput();
@@ -295,9 +305,6 @@ void lightsOn() {
     }
   }
   
-  if (delay > T3) {
-    gameLostMessage();
-  }
 }
 
 void gameRestarts() {
@@ -342,7 +349,7 @@ void attInterrupts() {
   Serial.println("go sleep... ");
   Serial.println("press B4 to wake up");
   Serial.flush();
-  attachInterrupt(digitalPinToInterrupt(BUTFOUR), wakeUp, RISING);
+  attachInterrupt(digitalPinToInterrupt(BUTFOUR), []() {}, RISING); // []() {} -> empty lambda
   sl = sleeping;
 }
 
@@ -351,14 +358,11 @@ void goSleep() {
   
   set_sleep_mode(SLEEP_MODE_PWR_DOWN); 
   sleep_enable();
-  sleep_mode(); 
-}
-
-void wakeUp() {
+  sleep_mode();
+  sleep_disable();
   Serial.println("Wake Up");
   s = idle;
   sl = createInt;
-  sleep_disable(); 
   detachInterrupt(digitalPinToInterrupt(BUTFOUR));
 }
 
@@ -396,5 +400,5 @@ void loop()
     	sleepMode();
     	break;
   }
+  delay(20);
 }
-

@@ -106,10 +106,12 @@ void pulse() {
 // Start play
 
 int T1 = 2000;
-int T2 = 4000;
-int T3 = 8000;
+int T2 = 3000;
+int T3 = 6000;
+int minT2 = 1000;
+int minT3 = 2000;
 
-float F = 0.95;
+float F = 1;
 
 long pastTimeOff = 0;
 long pastTimeOn = 0;
@@ -166,8 +168,8 @@ void gameState() {
 }
 
 void increaseDiff() {
-  T2 *= (F - (gameDiff * 0.05));
-  T3 *= (F - (gameDiff * 0.05));
+  T2 *= (F - (gameDiff * 0.10));
+  T3 *= (F - (gameDiff * 0.10));
 }
 
 void resetArray() {
@@ -217,9 +219,9 @@ void lightsOff() {
   
   long now = millis();
   long delay = now - pastTimeOff;
-  digitalWrite(ledPin[pattern[delay / (T2 / numLeds)]], LOW);
+  digitalWrite(ledPin[pattern[delay / ((T2 + minT2) / numLeds)]], LOW);
 
-  if (delay > T2) {
+  if (delay > (T2 + minT2)) {
     pastTimePlay = millis();
     g = turnOnLights;
   }
@@ -272,7 +274,7 @@ void incScore() {
 
 void gameLostMessage() {
   lightsGoOff();
-  analogWrite(GOLED, HIGH);
+  digitalWrite(GOLED, HIGH);
   pastTimeOver = millis();
   Serial.print("Game Over. Final Score: ");
   Serial.println(score);
@@ -290,7 +292,7 @@ void lightsOn() {
   long now = millis();
   long delay = now - pastTimePlay;
   
-  if (delay > T3) {
+  if (delay > (T3 + minT3)) {
     gameLostMessage();
   }
   
@@ -318,8 +320,8 @@ void gameRestarts() {
   
   if (delay > 10000) {
     T1 = 2000;
-  	T2 = 4000;
-  	T3 = 8000;
+    T2 = 2000;
+    T3 = 5000;
     score = 0;
     s = idle;
     g = settingDiff;
@@ -400,5 +402,5 @@ void loop()
     	sleepMode();
     	break;
   }
-  delay(20);
+  
 }

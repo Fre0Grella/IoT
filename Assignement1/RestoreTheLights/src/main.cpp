@@ -12,12 +12,11 @@ State *s;
 
 void setup()
 {
-  //TODO AGGIUNGERE TUTTE LE PIN MODE E LE ENABLE INTERRUPT
-  pinMode(PIN, INPUT_PULLUP);
-  //RICORDA FUNC è UNA FUNZIONE DA ASSOCIARE AD OGNI BOTTONE (FUNZIONA DI LETTURA INPUT)
-  //OGNI BOTTONE HA UNA FUNZIONE SEPARATA
-  enableInterrupt(PIN, func, CHANGE);
-
+  for (int but : butPin) {
+    pinMode(but, INPUT);
+    enableInterrupt(but, []() {}, CHANGE);
+  }
+  
   Serial.begin(9600);
 
   pinMode(GOLED, OUTPUT);
@@ -49,7 +48,8 @@ void loop()
     gameState(s, diff);
     break;
   case sleep:
-    sleepMode(s);
+    goSleep(s);
+    //sleepMode(s);
     break;
   }
   delay(20);

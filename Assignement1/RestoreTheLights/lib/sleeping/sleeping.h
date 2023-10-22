@@ -3,4 +3,6 @@
 
 void sleepMode(State *s);
 
+void goSleep(State *s);
+
 #endif

@@ -102,7 +102,7 @@ void lightsOff()
 
     long now = millis();
     long delay = now - pastTimeOff;
-    digitalWrite(ledPin[pattern[delay / (T2 / numLeds)]], LOW);
+    digitalWrite(ledPin[pattern[delay / ((T2 + minT2) / numLeds)]], LOW);
 
     if (delay > (T2 + minT2))
     {

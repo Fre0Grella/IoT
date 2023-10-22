@@ -6,7 +6,8 @@
 
 #include <EnableInterrupt.h>
 
-
+int diff;
+State s;
 
 void setup()
 {
@@ -39,7 +40,6 @@ void loop()
   switch (s)
   {
   case idle:
-  Serial.println(s);
     pulse();
     break;
   case play:
@@ -50,5 +50,4 @@ void loop()
     //sleepMode(s);
     break;
   }
-  delay(20);
 }

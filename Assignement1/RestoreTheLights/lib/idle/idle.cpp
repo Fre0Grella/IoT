@@ -15,13 +15,13 @@ enum IdleStates
 
 IdleStates e = setUpIdle;
 
-void setDifficulty(int *diff)
+void setDifficulty()
 {
     int raw = analogRead(DPOT);
-    *diff = (raw / 256) + 1;
+    diff = (raw / 256) + 1;
 }
 
-void waitPlayer(State *s, int *diff)
+void waitPlayer()
 {
     long now = millis();
     long delay = now - pastTimeWait;
@@ -38,16 +38,16 @@ void waitPlayer(State *s, int *diff)
     int buttonState = digitalRead(BUTONE);
     if (buttonState == HIGH)
     {
-        setDifficulty(diff);
+        setDifficulty();
         digitalWrite(GOLED, LOW);
         e = setUpIdle;
-        *s = play;
+        s = play;
     }
     if (now - pastTimeIdle >= 10000)
     {
         digitalWrite(GOLED, LOW);
         e = setUpIdle;
-        *s = sleep;
+        s = sleep;
     }
 }
 
@@ -60,7 +60,7 @@ void setTimer()
     e = fadeInOut;
 }
 
-void pulse(State *s, int *diff)
+void pulse()
 {
     switch (e)
     {
@@ -68,7 +68,7 @@ void pulse(State *s, int *diff)
         setTimer();
         break;
     case fadeInOut:
-        waitPlayer(s, diff);
+        waitPlayer();
         break;
     }
 }

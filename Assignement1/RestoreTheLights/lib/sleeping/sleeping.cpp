@@ -16,7 +16,7 @@ SleepState sl = createInt;*/
     sl = sleeping;
 }*/
 
-void goSleep(State *s)
+void goSleep()
 {
     delay(1000);
 
@@ -25,7 +25,7 @@ void goSleep(State *s)
     sleep_mode();
     sleep_disable();
     Serial.println("Wake Up");
-    *s = idle;
+    s = idle;
     //sl = createInt;
     //detachInterrupt(digitalPinToInterrupt(BUTFOUR));
 }

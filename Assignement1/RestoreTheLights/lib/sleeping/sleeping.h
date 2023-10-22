@@ -1,8 +1,8 @@
 #ifndef RESTORELIGHTS_SLEEP_H
 #define RESTORELIGHTS_SLEEP_H
 
-void sleepMode(State *s);
+void sleepMode();
 
-void goSleep(State *s);
+void goSleep();
 
 #endif

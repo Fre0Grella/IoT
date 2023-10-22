@@ -22,4 +22,9 @@ const int butPin[] = {BUTONE, BUTTWO, BUTTHREE, BUTFOUR};
 const int ledPin[] = {LEDONE, LEDTWO, LEDTHREE, LEDFOUR};
 
 enum State { idle, sleep, play };
+
+extern int diff;
+
+extern State s;
+
 #endif

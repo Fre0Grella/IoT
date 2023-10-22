@@ -6,9 +6,7 @@
 
 #include <EnableInterrupt.h>
 
-int *diff;
 
-State *s;
 
 void setup()
 {
@@ -32,23 +30,23 @@ void setup()
   pinMode(BUTTHREE, INPUT);
   pinMode(BUTFOUR, INPUT);*/
 
-  *diff = 1;
-  *s = idle;
+  diff = 1;
+  s = idle;
 }
 
 void loop()
 {
-  switch (*s)
+  switch (s)
   {
   case idle:
-  Serial.println(*s);
-    pulse(s, diff);
+  Serial.println(s);
+    pulse();
     break;
   case play:
-    gameState(s, diff);
+    gameState();
     break;
   case sleep:
-    goSleep(s);
+    goSleep();
     //sleepMode(s);
     break;
   }

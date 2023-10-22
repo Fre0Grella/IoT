@@ -213,7 +213,7 @@ void lightsOn()
     }
 }
 
-void gameRestarts(State *s)
+void gameRestarts()
 {
 
     long now = millis();
@@ -230,19 +230,19 @@ void gameRestarts(State *s)
         T2 = 2000;
         T3 = 5000;
         score = 0;
-        *s = idle;
+        s = idle;
         g = settingDiff;
     }
 }
 
-void gameState(State *s, int *diff)
+void gameState()
 {
 
     switch (g)
     {
     case settingDiff:
         Serial.println("Go!");
-        gameDiff = *diff;
+        gameDiff = diff;
         increaseDiff();
         g = setUpArray;
         break;
@@ -262,7 +262,7 @@ void gameState(State *s, int *diff)
         lightsOn();
         break;
     case gameOver:
-        gameRestarts(s);
+        gameRestarts();
         break;
     }
 }

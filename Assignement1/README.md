@@ -1,3 +1,3 @@
 
 # Link al progetto TinkerCad
-https://www.tinkercad.com/things/12K6lly0Dy5-fantastic-snicket/editel?sharecode=hfvGcLaFWVrHVwPS6i9k3d70NlLVkJdkwCrpO3yixUY
+https://www.tinkercad.com/things/3v0oo3cjJI0

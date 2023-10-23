@@ -11,11 +11,7 @@ State s;
 
 void setup()
 {
-  for (int but : butPin) {
-    pinMode(but, INPUT);
-    enableInterrupt(but, []() {}, CHANGE);
-  }
-  
+
   Serial.begin(9600);
 
   pinMode(GOLED, OUTPUT);
@@ -25,11 +21,12 @@ void setup()
   pinMode(LEDTHREE, OUTPUT);
   pinMode(LEDFOUR, OUTPUT);
 
-    //TODO CANCELLARE
-  /*pinMode(BUTONE, INPUT);
-  pinMode(BUTTWO, INPUT);
-  pinMode(BUTTHREE, INPUT);
-  pinMode(BUTFOUR, INPUT);*/
+  for (int but : butPin)
+  {
+    pinMode(but, INPUT);
+    enableInterrupt(
+        but, []() {}, CHANGE);
+  }
 
   diff = 1;
   s = idle;
@@ -47,7 +44,6 @@ void loop()
     break;
   case sleep:
     goSleep();
-    //sleepMode(s);
     break;
   }
 }

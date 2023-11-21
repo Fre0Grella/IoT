@@ -5,7 +5,6 @@
 #include "../components/Led.h"
 
 class BlinkTask: public Task {
-
   int pin;
   Led* led;
 

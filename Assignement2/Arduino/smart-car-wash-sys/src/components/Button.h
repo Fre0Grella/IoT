@@ -1,40 +1,21 @@
 #ifndef __BUTTON__
 #define __BUTTON__
 
-#include "async_fsm.h"
-
-#define BUTTON_PRESSED_EVENT 1
-#define BUTTON_RELEASED_EVENT 2
-
-class Button : public EventSource {
-public: 
+class Button {
+ 
+public:
+  Button();
   virtual bool isPressed() = 0;
-};
 
-class ButtonPressed: public Event {
-public:
-  ButtonPressed(Button* source) : Event(BUTTON_PRESSED_EVENT){
-    this->source = source;  
-  } 
- 
-  Button* getSource(){
-    return source;
-  } 
-private:
-  Button* source;  
-};
+  virtual void sync();
+  long getLastSyncTime();
 
-class ButtonReleased: public Event {
-public:
-  ButtonReleased(Button* source) : Event(BUTTON_RELEASED_EVENT){
-    this->source = source;  
-  } 
- 
-  Button* getSource(){
-    return source;
-  } 
+protected: 
+  void updateSyncTime(long time);
+
 private:
-  Button* source;  
+  long lastTimeSync;
+
 };
 
 #endif

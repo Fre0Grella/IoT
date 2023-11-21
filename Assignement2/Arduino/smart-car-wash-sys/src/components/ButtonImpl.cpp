@@ -1,29 +1,17 @@
 #include "ButtonImpl.h"
 #include "Arduino.h"
 
-#define DEBOUNCING_TIME 20
-
 ButtonImpl::ButtonImpl(int pin){
   this->pin = pin;
   pinMode(pin, INPUT);  
-  bindInterrupt(pin);
-  lastEventTime = millis();
+  sync();   
 } 
   
 bool ButtonImpl::isPressed(){
-  return digitalRead(pin) == HIGH;
+  return pressed;
 }
 
-void ButtonImpl::notifyInterrupt(int pin){
-  long curr = millis();
-  if (curr - lastEventTime > DEBOUNCING_TIME){
-        lastEventTime = curr;
-        Event* ev;
-        if (isPressed()){
-          ev = new ButtonPressed(this);
-        } else {
-          ev = new ButtonReleased(this);
-        }
-        this->generateEvent(ev);
-  }
+void ButtonImpl::sync(){
+  pressed = digitalRead(pin) == HIGH;
+  updateSyncTime(millis());
 }

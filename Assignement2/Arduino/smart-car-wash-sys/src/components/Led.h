@@ -7,7 +7,8 @@ class Led: public Light {
 public:
   Led(int pin);
   void switchOn();
-  void switchOff();    
+  void switchOff();
+  bool isOn();   
 private:
   int pin;  
 };

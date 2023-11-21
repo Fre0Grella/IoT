@@ -7,8 +7,7 @@
 class BlinkTask: public Task {
 
   int pin;
-  Light* led;
-  enum { ON, OFF} state;
+  Led* led;
 
 public:
 

@@ -12,7 +12,7 @@ private:
     int cursorY;
 public:
     LCD();
-    void print(char string[]);
+    void print(String string);
     void clear();
 };
 

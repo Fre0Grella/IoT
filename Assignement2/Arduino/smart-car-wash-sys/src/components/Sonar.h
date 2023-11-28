@@ -8,7 +8,7 @@
 class Sonar: public ProximitySensor {
 
 public:  
-  Sonar(int echoPin, int trigPin, long maxTime);
+  Sonar(int echoPin);
   float getDistance();
   void setTemperature(float temp);  
 
@@ -17,8 +17,7 @@ private:
     float getSoundSpeed();
     
     float temperature;    
-    int echoPin, trigPin;
-    long timeOut;
+    int echoPin;
 };
 
 #endif 

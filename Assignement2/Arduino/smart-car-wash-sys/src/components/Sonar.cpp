@@ -2,8 +2,8 @@
 
 #include "Arduino.h"
 
-Sonar::Sonar(int echoP, int trigP, long maxTime) : echoPin(echoP), trigPin(trigP), timeOut(maxTime){
-  pinMode(trigPin, OUTPUT);
+Sonar::Sonar(int echoP) : echoPin(echoP) {
+  pinMode(echoPin, OUTPUT);
   pinMode(echoPin, INPUT);  
   temperature = 20; // default value
 }
@@ -16,19 +16,19 @@ float Sonar::getSoundSpeed(){
 }
 
 float Sonar::getDistance(){
-    digitalWrite(trigPin,LOW);
+    digitalWrite(echoPin,LOW);
     delayMicroseconds(3);
-    digitalWrite(trigPin,HIGH);
+    digitalWrite(echoPin,HIGH);
     delayMicroseconds(5);
-    digitalWrite(trigPin,LOW);
+    digitalWrite(echoPin,LOW);
     
-    float tUS = pulseIn(echoPin, HIGH, timeOut);
+    float tUS = pulseIn(echoPin, HIGH);
     if (tUS == 0) {
         return NO_OBJ_DETECTED;
     } else {
         float t = tUS / 1000.0 / 1000.0 / 2;
         float d = t*getSoundSpeed();
-        return d;  
+        return d;
     }
 }
 

@@ -6,13 +6,18 @@
 
 class DistanceTask: public Task {
   int pin;
-  int target;
+  int target; 
+  int period;
+  int elapsedTime;
+  int timeOut;
+  bool min;
+  bool valid;
   Sonar* sonar;
 
 public:
 
   DistanceTask(int pin);  
-  void init(int period, int target);  
+  void init(int period, int target, bool min, int timeOut);  
   void tick();
 };
 

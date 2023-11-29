@@ -1,9 +1,10 @@
 #include "SleepTask.h"
 
 
-SleepTask::SleepTask(int pin, Scheduler scheduler) {
+SleepTask::SleepTask(int pin, Scheduler scheduler, WelcomeTask *task) {
     this->pin = pin;
     this->sched = scheduler;
+    this->wtask = task;
 }
 
 void SleepTask::tick() {
@@ -14,7 +15,7 @@ void SleepTask::tick() {
     sleep_mode();
     sleep_disable();
     detachInterrupt(digitalPinToInterrupt(this->pin));
-    
+    wtask->init();
 }
 
 void SleepTask::clearScheduler() {

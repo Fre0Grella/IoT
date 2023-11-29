@@ -7,10 +7,10 @@
 
 class WelcomeTask: public Task{
     private:
-        Led led;
-        LCD screen;
+        Led* led;
+        LCD* screen;
     public:
-        WelcomeTask(Led led, LCD screen);  
+        WelcomeTask(Led *led, LCD *screen);  
         void init();  
         void tick();
 };

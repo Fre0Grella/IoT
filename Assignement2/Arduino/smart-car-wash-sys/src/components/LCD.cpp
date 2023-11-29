@@ -1,5 +1,5 @@
 #include "LCD.h"
-
+/*
 LCD::LCD() {
     lcd.init();
     lcd.backlight();
@@ -18,3 +18,5 @@ void LCD::print(String string) {
 void LCD::clear() {
     lcd.clear();
 }
+
+*/

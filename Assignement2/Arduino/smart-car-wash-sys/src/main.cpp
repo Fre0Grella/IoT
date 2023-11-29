@@ -1,18 +1,25 @@
 #include <Arduino.h>
+#include "tasks/BlinkTask.h"
+#include "utils/Scheduler.h"
 
-// put function declarations here:
-int myFunction(int, int);
+
+Scheduler schedule;
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(9600);
+  schedule.init(100);
+
+  Task* t0 = new BlinkTask(13);
+  t0->init(500);
+
+  Task* t1 = new BlinkTask(12);
+  t1->init(500);
+
+  schedule.addTask(t0);
+  schedule.addTask(t1);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  schedule.schedule();
 }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
-}

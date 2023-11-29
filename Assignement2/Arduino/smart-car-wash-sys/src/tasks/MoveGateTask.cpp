@@ -12,4 +12,5 @@ void MoveGateTask::init(int period) {
 
 void MoveGateTask::tick() {
   this->gate->isOpen() ? this->gate->closeGate() : this->gate->openGate();
+  this->setActive(false);
 }

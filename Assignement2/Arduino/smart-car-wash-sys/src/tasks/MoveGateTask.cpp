@@ -4,9 +4,8 @@ MoveGateTask::MoveGateTask(int pin) {
   this->pin = pin;    
 }
   
-void MoveGateTask::init(int period) {
-  Task::init(period);
-  this->period = period;
+void MoveGateTask::init() {
+  Task::init();
   this->gate = new Gate(this->pin);
 }
 

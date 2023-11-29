@@ -6,14 +6,13 @@
 
 class MoveGateTask: public Task {
   int pin; 
-  int period;
   bool isOpen;
   Gate* gate;
 
 public:
 
   MoveGateTask(int pin);  
-  void init(int period);  
+  void init();  
   void tick();
 };
 

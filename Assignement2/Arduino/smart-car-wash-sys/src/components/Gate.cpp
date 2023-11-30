@@ -10,22 +10,19 @@ Gate::Gate(int pin)
 void Gate::move(int angle)
 {
     int i = motor.read();
-    if (i > angle)
-    {
-        for (i; i > angle; i--)
+        while (i > angle)
         {
             motor.write(i);
             delay(millisec);
+            i--;
         }
-    }
-    else
-    {
-        for (i; i < angle; i++)
+
+        while (i < angle)
         {
             motor.write(i);
             delay(millisec);
+            i++;
         }
-    }
 }
 
 void Gate::openGate()

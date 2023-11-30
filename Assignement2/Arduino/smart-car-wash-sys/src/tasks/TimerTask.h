@@ -5,13 +5,14 @@
 
 
 class TimerTask: public Task {
-//[TODO] trovare un modo per passargli i task da settare active
+    
     public:
-        TimerTask(int timeToWait);
+        TimerTask(int timeToWait, Task* tList, int nTask);
         void init(int period);
         void tick();
     
     private:
-        
+        Task* tList;
+        int size;
 };
 #endif

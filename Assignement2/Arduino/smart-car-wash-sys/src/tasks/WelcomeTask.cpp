@@ -14,4 +14,5 @@ void WelcomeTask::init() {
 void WelcomeTask::tick() {
     led->switchOn();
     screen->print("Welcome");
+    this->setActive(false);
 }

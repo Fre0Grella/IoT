@@ -13,9 +13,15 @@ public:
     active = true;
   }
 
+  virtual void init() {
+    active = true;
+    myPeriod = 0;
+    timeElapsed = 0;
+  }
+
   virtual void tick() = 0;
 
-  bool updateAndCheckTime(int basePeriod){
+  virtual bool updateAndCheckTime(int basePeriod){
     timeElapsed += basePeriod;
     if (timeElapsed >= myPeriod){
       timeElapsed = 0;
@@ -25,11 +31,11 @@ public:
     }
   }
 
-  bool isActive(){
+  virtual bool isActive(){
     return active;
   }
 
-  void setActive(bool active){
+  virtual void setActive(bool active){
     this->active = active;
   }
   

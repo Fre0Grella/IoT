@@ -3,7 +3,7 @@
 
 class ServoMotor {
     public:
-    virtual void move(int angle, int millisec) = 0;
+    virtual void move(int angle) = 0;
 };
 
 #endif

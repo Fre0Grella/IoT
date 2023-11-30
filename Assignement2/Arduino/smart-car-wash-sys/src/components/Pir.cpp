@@ -27,4 +27,8 @@ long Pir::getLastSyncTime(){
 	return lastTimeSync;
 }
 
+int Pir::getPin() {
+  return pin;
+}
+
 

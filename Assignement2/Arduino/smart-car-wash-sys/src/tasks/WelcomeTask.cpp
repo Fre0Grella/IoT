@@ -7,8 +7,8 @@ WelcomeTask::WelcomeTask(Led* led, LCD* screen) {
 }
 
 void WelcomeTask::init() {
-    Task::init(0);
-
+    this->setActive(false);
+    Task::init();
 }
 
 void WelcomeTask::tick() {

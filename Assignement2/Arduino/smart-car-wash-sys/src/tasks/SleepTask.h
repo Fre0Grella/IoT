@@ -3,7 +3,6 @@
 
 #include "Task.h"
 #include "../utils/Scheduler.h"
-#include "WelcomeTask.h"
 #include <Arduino.h>
 #include <avr/sleep.h>
 #include <EnableInterrupt.h>
@@ -13,9 +12,9 @@ class SleepTask: public Task
 private:
     int pin;
     Scheduler sched;
-    WelcomeTask* wtask;
+    Task* wtask;
 public:
-    SleepTask(int pin, Scheduler sched, WelcomeTask *task);
+    SleepTask(int pin, Scheduler sched, Task *task);
     void tick();
     void clearScheduler();
 };

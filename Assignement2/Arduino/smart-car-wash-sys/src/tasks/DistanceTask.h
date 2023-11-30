@@ -11,7 +11,6 @@ class DistanceTask: public Task {
   int elapsedTime;
   int timeOut;
   bool min;
-  bool valid;
   Sonar* sonar;
 
 public:

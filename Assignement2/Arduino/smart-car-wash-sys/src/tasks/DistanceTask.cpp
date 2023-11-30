@@ -3,7 +3,10 @@
 DistanceTask::DistanceTask(int pin) {
   this->pin = pin;    
 }
-  
+
+/** third parameter indicates if the sonar needs to check whether it should 
+ * check if the object distance is min than target (min = true)
+ * or it is grater than target (min = false) */ 
 void DistanceTask::init(int period, int target, bool min, int timeOut) {
   Task::init(period);
   this->target = target;
@@ -11,12 +14,11 @@ void DistanceTask::init(int period, int target, bool min, int timeOut) {
   this->min = min;
   this->timeOut = timeOut;
   this->period = period;
-  this->valid = false;
   this->sonar = new Sonar(this->pin);
 }
   
 void DistanceTask::tick() {
-  valid = min ? this->sonar->getDistance() <= target : this->sonar->getDistance() >= target;
+  bool valid = min ? this->sonar->getDistance() <= target : this->sonar->getDistance() >= target;
   if (valid) {
     elapsedTime += this->period;
     if (elapsedTime >= timeOut) {

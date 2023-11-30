@@ -5,13 +5,12 @@
 #include "../components/Led.h"
 
 class BlinkTask: public Task {
-  int pin;
   Led* led;
 
 public:
 
-  BlinkTask(int pin);  
-  void init(int period);  
+  BlinkTask();  
+  void init(int period, Led *led);  
   void tick();
 };
 

@@ -5,13 +5,12 @@
 #include "../components/Led.h"
 
 class LightTask: public Task {
-  int pin;
   Led* led;
 
 public:
 
-  LightTask(int pin);  
-  void init();  
+  LightTask();  
+  void init(Led *led);  
   void tick();
 };
 

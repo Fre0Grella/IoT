@@ -1,12 +1,11 @@
 #include "MoveGateTask.h"
 
-MoveGateTask::MoveGateTask(int pin) {
-  this->pin = pin;    
+MoveGateTask::MoveGateTask() {
 }
   
-void MoveGateTask::init() {
+void MoveGateTask::init(Gate *gate) {
   Task::init();
-  this->gate = new Gate(this->pin);
+  this->gate = gate;
 }
 
 void MoveGateTask::tick() {

@@ -1,12 +1,11 @@
 #include "LightTask.h"
 
-LightTask::LightTask(int pin){
-  this->pin = pin;    
+LightTask::LightTask(){
 }
   
-void LightTask::init(){
+void LightTask::init(Led *led){
   Task::init();
-  led = new Led(pin);   
+  this->led = led;   
 }
   
 void LightTask::tick(){

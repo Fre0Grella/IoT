@@ -1,20 +1,19 @@
 #include "DistanceTask.h"
 
-DistanceTask::DistanceTask(int pin) {
-  this->pin = pin;    
+DistanceTask::DistanceTask() { 
 }
 
 /** third parameter indicates if the sonar needs to check whether it should 
  * check if the object distance is min than target (min = true)
  * or it is grater than target (min = false) */ 
-void DistanceTask::init(int period, int target, bool min, int timeOut) {
+void DistanceTask::init(int period, int target, bool min, int timeOut, Sonar *sonar) {
   Task::init(period);
   this->target = target;
   this->elapsedTime = 0;
   this->min = min;
   this->timeOut = timeOut;
   this->period = period;
-  this->sonar = new Sonar(this->pin);
+  this->sonar = sonar;
 }
   
 void DistanceTask::tick() {

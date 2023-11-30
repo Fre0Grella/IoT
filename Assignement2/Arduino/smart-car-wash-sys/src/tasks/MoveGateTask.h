@@ -5,14 +5,13 @@
 #include "../components/Gate.h"
 
 class MoveGateTask: public Task {
-  int pin; 
   bool isOpen;
   Gate* gate;
 
 public:
 
-  MoveGateTask(int pin);  
-  void init();  
+  MoveGateTask();  
+  void init(Gate *gate);  
   void tick();
 };
 

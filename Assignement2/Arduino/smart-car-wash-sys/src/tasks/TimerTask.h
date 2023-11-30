@@ -7,8 +7,8 @@
 class TimerTask: public Task {
     
     public:
-        TimerTask(int timeToWait, Task* tList, int nTask);
-        void init(int period);
+        TimerTask();
+        void init(int timeToWait, Task* tList, int nTask);
         void tick();
     
     private:

@@ -1,7 +1,10 @@
 #include "SleepTask.h"
 
 
-SleepTask::SleepTask(int pin, Scheduler scheduler, Task *task) {
+SleepTask::SleepTask() {    
+}
+
+void SleepTask::init(int pin, Scheduler scheduler, Task *task) {
     this->pin = pin;
     this->sched = scheduler;
     this->wtask = task;

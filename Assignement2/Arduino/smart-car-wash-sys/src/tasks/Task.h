@@ -10,11 +10,11 @@ public:
   virtual void init(int period){
     myPeriod = period;  
     timeElapsed = 0;
-    active = true;
+    active = false;
   }
 
   virtual void init() {
-    active = true;
+    active = false;
     myPeriod = 0;
     timeElapsed = 0;
   }

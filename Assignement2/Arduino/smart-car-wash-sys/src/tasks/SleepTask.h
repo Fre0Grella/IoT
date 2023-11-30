@@ -14,8 +14,9 @@ private:
     Scheduler sched;
     Task* wtask;
 public:
-    SleepTask(int pin, Scheduler sched, Task *task);
+    SleepTask();
     void tick();
+    void init(int pin, Scheduler sched, Task *task);
     void clearScheduler();
 };
 

@@ -36,3 +36,9 @@ void Scheduler::schedule(){
     }
   }
 }
+
+void Scheduler::deactivateAll() {
+  for (Task* t : taskList) {
+    t->setActive(false);
+  }
+}

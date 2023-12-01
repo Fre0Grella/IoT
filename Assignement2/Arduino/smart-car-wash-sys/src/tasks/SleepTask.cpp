@@ -1,13 +1,10 @@
 #include "SleepTask.h"
 
 
-SleepTask::SleepTask() {    
-}
-
-void SleepTask::init(int pin, Scheduler scheduler, Task *task) {
+SleepTask::SleepTask(int pin, Scheduler scheduler, Task *tList[], int listSize) {    
     this->pin = pin;
     this->sched = scheduler;
-    this->wtask = task;
+    this->tList = tList;
     Task::init();
 }
 
@@ -19,9 +16,16 @@ void SleepTask::tick() {
     sleep_mode();
     sleep_disable();
     detachInterrupt(digitalPinToInterrupt(this->pin));
-    wtask->setActive(true);
+    activateTask(tList, listSize);
 }
 
 void SleepTask::clearScheduler() {
     sched.deactivateAll();
+}
+
+void SleepTask::activateTask(Task* tList, int listSize) {
+    for (int i = 0; i < listSize; i++) {
+        tList[i].setActive(true);
+    }
+    
 }

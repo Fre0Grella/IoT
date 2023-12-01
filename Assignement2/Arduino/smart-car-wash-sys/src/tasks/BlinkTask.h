@@ -8,9 +8,7 @@ class BlinkTask: public Task {
   Led* led;
 
 public:
-
-  BlinkTask();  
-  void init(int period, Led *led);  
+  BlinkTask(int period, Led *led);  
   void tick();
 };
 

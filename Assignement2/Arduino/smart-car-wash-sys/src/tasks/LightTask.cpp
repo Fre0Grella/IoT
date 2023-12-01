@@ -1,11 +1,8 @@
 #include "LightTask.h"
 
-LightTask::LightTask(){
-}
-  
-void LightTask::init(Led *led){
+LightTask::LightTask(Led *led){
   Task::init();
-  this->led = led;   
+  this->led = led;  
 }
   
 void LightTask::tick(){

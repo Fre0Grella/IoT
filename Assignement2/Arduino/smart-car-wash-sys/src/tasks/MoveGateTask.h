@@ -10,8 +10,7 @@ class MoveGateTask: public Task {
 
 public:
 
-  MoveGateTask();  
-  void init(Gate *gate);  
+  MoveGateTask(Gate *gate);  
   void tick();
 };
 

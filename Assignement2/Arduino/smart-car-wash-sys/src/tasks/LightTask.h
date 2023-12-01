@@ -8,9 +8,7 @@ class LightTask: public Task {
   Led* led;
 
 public:
-
-  LightTask();  
-  void init(Led *led);  
+  LightTask(Led *led);
   void tick();
 };
 

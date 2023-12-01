@@ -1,9 +1,6 @@
 #include "LCDTask.h"
 
-LCDTask::LCDTask() {
-}
-
-void LCDTask::init(LCD* screen, String message) {
+LCDTask::LCDTask(LCD* screen, String message) {
     Task::init();
     this->message = message;
     this->screen = screen;

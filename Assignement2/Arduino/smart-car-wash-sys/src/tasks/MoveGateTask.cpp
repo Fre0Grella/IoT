@@ -1,9 +1,6 @@
 #include "MoveGateTask.h"
 
-MoveGateTask::MoveGateTask() {
-}
-  
-void MoveGateTask::init(Gate *gate) {
+MoveGateTask::MoveGateTask(Gate *gate) {
   Task::init();
   this->gate = gate;
 }

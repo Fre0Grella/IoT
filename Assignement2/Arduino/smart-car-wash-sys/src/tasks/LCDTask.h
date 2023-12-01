@@ -9,8 +9,7 @@ class LCDTask: public Task{
         LCD* screen;
         String message;
     public:
-        LCDTask();  
-        void init(LCD *screen, String message);  
+        LCDTask(LCD *screen, String message); 
         void tick();
 };
 

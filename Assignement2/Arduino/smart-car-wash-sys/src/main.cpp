@@ -20,8 +20,7 @@ void testBlinkTask() {
 }
 
 void testLightTask() {
-  Led* l1 = new Led(13);
-  Task* lightTask = new LightTask(l1);
+  Task* lightTask = new LightTask(led2);
   lightTask->setActive(true);
   schedule.addTask(lightTask);
 }

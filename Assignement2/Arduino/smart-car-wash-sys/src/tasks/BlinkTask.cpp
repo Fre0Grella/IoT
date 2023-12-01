@@ -10,13 +10,7 @@ void BlinkTask::init(int period){
 }
   
 void BlinkTask::tick(){
-<<<<<<< HEAD
   if (led->isOn()) {
-=======
-  if (!led->isOn()) {
-    led->switchOn();
-  } else {
->>>>>>> task-creation
     led->switchOff();
   } else {
     led->switchOn();

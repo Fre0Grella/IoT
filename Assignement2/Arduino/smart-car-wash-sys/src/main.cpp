@@ -5,10 +5,7 @@
 
 Scheduler schedule;
 
-void setup() {
-  Serial.begin(9600);
-  schedule.init(100);
-
+void testBlinkTask() {
   Task* t0 = new BlinkTask(13);
   t0->init(500);
 
@@ -17,6 +14,17 @@ void setup() {
 
   schedule.addTask(t0);
   schedule.addTask(t1);
+
+}
+
+void testDistanceTask() {
+  
+}
+
+void setup() {
+  Serial.begin(9600);
+  schedule.init(100);
+  testBlinkTask();
 }
 
 void loop() {

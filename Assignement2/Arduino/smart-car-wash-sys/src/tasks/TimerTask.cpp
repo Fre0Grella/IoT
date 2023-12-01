@@ -1,14 +1,18 @@
 #include "TimerTask.h"
 
-TimerTask::TimerTask(int timeToWait, Task* tList, int nTask) {    
+TimerTask::TimerTask(int timeToWait, Task* tList[], int nTask) {    
     Task::init(timeToWait);
     this->tList = tList;
     this->size = nTask;
 }
 
 void TimerTask::tick() {
-    for (int i = 0; i < size; i++) {
-        tList[i].setActive(true);
-    }
+    activateTask(tList, size);
     this->setActive(false);
+}
+
+void TimerTask::activateTask(Task* tList[], int listSize) {
+    for (int i = 0; i < listSize; i++) {
+        tList[i]->setActive(true);
+    }
 }

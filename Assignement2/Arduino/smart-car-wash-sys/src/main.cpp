@@ -17,8 +17,8 @@ void setup() {
   sched.addTask(lightTask);
   Task* screenTask = new LCDTask(screen, "welcome");
   sched.addTask(screenTask);
-  Task* list[2] = {lightTask, screenTask};
-  Task* slpTask = new SleepTask(5,sched,&list, 2);
+  Task* list[] = {lightTask, screenTask};
+  Task* slpTask = new SleepTask(5,sched,list, 2);
   sched.addTask(slpTask);
   
   

@@ -12,10 +12,10 @@ class SleepTask: public Task
 private:
     int pin;
     Scheduler sched;
-    Task* tList;
+    Task** tList;
     int listSize;
 
-    void activateTask(Task* tList, int listSize);
+    void activateTask(Task* tList[], int listSize);
     void clearScheduler();
 public:
     SleepTask(int pin, Scheduler sched, Task *tList[], int listSize);

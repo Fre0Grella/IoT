@@ -23,9 +23,9 @@ void SleepTask::clearScheduler() {
     sched.deactivateAll();
 }
 
-void SleepTask::activateTask(Task* tList, int listSize) {
+void SleepTask::activateTask(Task* tList[], int listSize) {
     for (int i = 0; i < listSize; i++) {
-        tList[i].setActive(true);
+        tList[i]->setActive(true);
     }
     
 }

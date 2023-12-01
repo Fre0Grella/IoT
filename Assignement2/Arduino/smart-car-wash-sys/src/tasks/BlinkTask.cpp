@@ -1,7 +1,7 @@
 #include "BlinkTask.h"
 
 BlinkTask::BlinkTask(int period, Led* led){
-  this->led = led;
+  led = led;
   Task::init(period);
 }
   

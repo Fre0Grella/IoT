@@ -6,11 +6,10 @@
 Scheduler schedule;
 
 void testBlinkTask() {
-  Task* t0 = new BlinkTask(13);
-  t0->init(500);
-
-  Task* t1 = new BlinkTask(12);
-  t1->init(500);
+  Led* l1 = new Led(13);
+  Led* l2 = new Led(12);
+  Task* t0 = new BlinkTask(500, l1);
+  Task* t1 = new BlinkTask(200, l2);
 
   schedule.addTask(t0);
   schedule.addTask(t1);

@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 #include "ServoMotor.h"
-#include <Servo.h>
+#include <ServoTimer2.h>
 
 class Gate: public ServoMotor {
     public:
@@ -14,7 +14,7 @@ class Gate: public ServoMotor {
         bool isOpen();
     private:
         int pin;
-        Servo motor;
+        ServoTimer2 motor;
         const int millisec = 10;
         const int open = 180;
         const int close = 90;

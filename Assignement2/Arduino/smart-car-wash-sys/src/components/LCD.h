@@ -1,6 +1,6 @@
 #ifndef __LCD__
 #define __LCD__
-/*
+
 #include <Arduino.h>
 #include <LiquidCrystal_I2C.h>
 #include "Display.h"
@@ -15,5 +15,4 @@ public:
     void print(String string);
     void clear();
 };
-*/
 #endif

@@ -9,6 +9,7 @@ public:
   Pir(int pin);
   bool isDetected();
   void calibrate();
+  int getPin();
 
   void sync();
   long getLastSyncTime();

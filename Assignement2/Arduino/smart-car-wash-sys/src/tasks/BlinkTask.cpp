@@ -1,12 +1,8 @@
 #include "BlinkTask.h"
 
-BlinkTask::BlinkTask(int pin){
-  this->pin = pin;    
-}
-  
-void BlinkTask::init(int period){
+BlinkTask::BlinkTask(int period, Led* led){
+  this->led = led;
   Task::init(period);
-  led = new Led(pin);   
 }
   
 void BlinkTask::tick(){

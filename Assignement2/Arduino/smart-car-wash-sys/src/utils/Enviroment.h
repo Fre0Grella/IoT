@@ -9,10 +9,13 @@
 
 Led* led1 = new Led(2);
 Led* led2 = new Led(3);
-/* Led* led3 = new Led(4);
+Led* led3 = new Led(4);
 Gate* gate = new Gate(1);
 Pir* pir = new Pir(7);
+Sonar* distance = new Sonar(8); 
+/*
 LCD* screen = new LCD();
-Sonar* distance = new Sonar(8); */
+*/
+
 
 #endif

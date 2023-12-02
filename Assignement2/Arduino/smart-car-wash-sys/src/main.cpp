@@ -2,6 +2,7 @@
 #include "tasks/BlinkTask.h"
 #include "utils/Scheduler.h"
 #include "tasks/LightTask.h"
+#include "tasks/LCDTask.h"
 #include "utils/Enviroment.h"
 #include "components/Led.h"
 
@@ -26,14 +27,18 @@ void testLightTask() {
   schedule.addTask(lightTask2);
 }
 
-void testDistanceTask() {
-  
+void testLCDTask() {
+  Task* lcdTask = new LCDTask(screen, "Esdrango-dongo");
+  lcdTask->setActive(true);
+  schedule.addTask(lcdTask);
 }
 
 void setup() {
   Serial.begin(9600);
   schedule.init(200);
+  screen->init();
   testBlinkTask();
+  testLCDTask();
 }
 
 void loop() {

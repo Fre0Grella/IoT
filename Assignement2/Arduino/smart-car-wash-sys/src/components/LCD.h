@@ -7,11 +7,12 @@
 
 class LCD: public Display {
 private:
-    LiquidCrystal_I2C lcd = LiquidCrystal_I2C(0x27,16,2);
+    LiquidCrystal_I2C* lcd; 
     int cursorX;
     int cursorY;
 public:
     LCD();
+    void init();
     void print(String string);
     void clear();
 };

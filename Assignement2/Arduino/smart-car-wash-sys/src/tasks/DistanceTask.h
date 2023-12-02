@@ -2,7 +2,7 @@
 #define __DISTANCETASK__
 
 #include "Task.h"
-#include "../components/Sonar.h"
+#include "components/Sonar.h"
 
 class DistanceTask: public Task {
   int target; 

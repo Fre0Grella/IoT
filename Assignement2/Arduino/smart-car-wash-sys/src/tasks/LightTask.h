@@ -2,7 +2,7 @@
 #define __LIGHTTASK__
 
 #include "Task.h"
-#include "../components/Led.h"
+#include "components/Led.h"
 
 class LightTask: public Task {
   Led* led;

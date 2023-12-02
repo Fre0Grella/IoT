@@ -2,7 +2,7 @@
 #define __LCDTASK__
 
 #include "Task.h"
-#include "../components/LCD.h"
+#include "components/LCD.h"
 
 class LCDTask: public Task{
     private:

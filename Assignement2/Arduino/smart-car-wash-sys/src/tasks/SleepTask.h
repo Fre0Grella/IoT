@@ -2,7 +2,7 @@
 #define __SLEEPTASK
 
 #include "Task.h"
-#include "../utils/Scheduler.h"
+#include "utils/Scheduler.h"
 #include <Arduino.h>
 #include <avr/sleep.h>
 #include <EnableInterrupt.h>

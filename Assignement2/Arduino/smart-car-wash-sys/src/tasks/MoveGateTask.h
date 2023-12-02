@@ -2,7 +2,7 @@
 #define __MOVEGATETASK__
 
 #include "Task.h"
-#include "../components/Gate.h"
+#include "components/Gate.h"
 
 class MoveGateTask: public Task {
   bool isOpen;

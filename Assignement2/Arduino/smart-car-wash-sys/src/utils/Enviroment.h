@@ -12,7 +12,7 @@ Led* led2 = new Led(3);
 Led* led3 = new Led(4);
 Gate* gate = new Gate(1);
 Pir* pir = new Pir(7);
-// LCD* screen = new LCD(); // this breaks every pin now
+LCD* screen = new LCD(); 
 Sonar* distance = new Sonar(8);
 
 #endif

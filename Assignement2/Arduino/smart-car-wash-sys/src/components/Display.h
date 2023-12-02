@@ -1,7 +1,6 @@
 #ifndef __DISPLAY__
 #define __DISPLAY__
 
-#include <String.h>
 
 class Display {
     public:

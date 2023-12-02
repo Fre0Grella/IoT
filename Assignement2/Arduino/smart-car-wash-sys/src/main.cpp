@@ -9,11 +9,9 @@
 Scheduler schedule;
 
 void testBlinkTask() {
-  Led* l1 = new Led(3);
-  Led* l2 = new Led(2);
-  Task* t0 = new BlinkTask(500, l1);
+  Task* t0 = new BlinkTask(500, led1);
+  Task* t1 = new BlinkTask(200, led2);
   t0->setActive(true);
-  Task* t1 = new BlinkTask(500, l2);
   t1->setActive(true);
   schedule.addTask(t0);
   schedule.addTask(t1);
@@ -21,8 +19,11 @@ void testBlinkTask() {
 
 void testLightTask() {
   Task* lightTask = new LightTask(led2);
+  Task* lightTask2 = new LightTask(led1);
   lightTask->setActive(true);
+  lightTask2->setActive(true);
   schedule.addTask(lightTask);
+  schedule.addTask(lightTask2);
 }
 
 void testDistanceTask() {
@@ -32,7 +33,7 @@ void testDistanceTask() {
 void setup() {
   Serial.begin(9600);
   schedule.init(200);
-  testLightTask();
+  testBlinkTask();
 }
 
 void loop() {

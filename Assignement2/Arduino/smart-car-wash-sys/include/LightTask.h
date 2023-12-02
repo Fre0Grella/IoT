@@ -1,8 +1,8 @@
 #ifndef __LIGHTTASK__
 #define __LIGHTTASK__
 
-#include "Task.h"
-#include "components/Led.h"
+#include <Task.h>
+#include <Led.h>
 
 class LightTask: public Task {
   Led* led;

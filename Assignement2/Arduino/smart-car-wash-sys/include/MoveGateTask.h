@@ -1,8 +1,8 @@
 #ifndef __MOVEGATETASK__
 #define __MOVEGATETASK__
 
-#include "Task.h"
-#include "components/Gate.h"
+#include <Task.h>
+#include <Gate.h>
 
 class MoveGateTask: public Task {
   bool isOpen;

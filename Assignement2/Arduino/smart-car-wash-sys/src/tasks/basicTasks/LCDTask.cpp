@@ -1,4 +1,4 @@
-#include "LCDTask.h"
+#include <LCDTask.h>
 
 LCDTask::LCDTask(LCD* screen, String message) {
     Task::init();

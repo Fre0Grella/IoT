@@ -15,6 +15,7 @@ void LCD::init() {
 void LCD::print(String string) {
     //[TODO]: check lenght for avoiding overflow of the screen
    //int length = string.length();
+    lcd->clear();
     lcd->print(string);
 }
 

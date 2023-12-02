@@ -2,8 +2,8 @@
 #define __GATE__
 
 #include <Arduino.h>
-#include "ServoMotor.h"
-#include "ServoTimer2.h"
+#include <ServoMotor.h>
+#include <ServoTimer2.h>
 
 class Gate: public ServoMotor {
     public:

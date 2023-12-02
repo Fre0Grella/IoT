@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 #include <LiquidCrystal_I2C.h>
-#include "Display.h"
+#include <Display.h>
 
 class LCD: public Display {
 private:

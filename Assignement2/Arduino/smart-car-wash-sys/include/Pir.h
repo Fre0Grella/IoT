@@ -1,7 +1,7 @@
 #ifndef __PIR__
 #define __PIR__
 
-#include "PresenceSensor.h"
+#include <PresenceSensor.h>
 
 class Pir: public PresenceSensor {
  

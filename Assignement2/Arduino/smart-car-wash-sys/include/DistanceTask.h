@@ -1,8 +1,8 @@
 #ifndef __DISTANCETASK__
 #define __DISTANCETASK__
 
-#include "Task.h"
-#include "components/Sonar.h"
+#include <Task.h>
+#include <Sonar.h>
 
 class DistanceTask: public Task {
   int target; 

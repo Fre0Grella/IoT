@@ -18,7 +18,7 @@ void WashingAreaTask::tick() {
     
     case START_WASHING:
         // this "if" is for displaying the countdown
-        if (timeInState()%1000 == 0) {
+        if (timeInState() % 1000 == 0) {
             double ltod = N3 - (timeInState()%1000);
             String s = String(ltod, DEC);
             screen->print(s);
@@ -54,14 +54,8 @@ void WashingAreaTask::tick() {
         setState(START_WASHING);
     break;
 
-
-    default:
-        break;
     }
 }
-
-
-
 
 void WashingAreaTask::setState(States state) {
     this->state = state;

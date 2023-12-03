@@ -26,8 +26,6 @@ class Hook{
         void restartProcess();
         bool isProcessFinished();
 
-        
-
     private:
         
         bool procedureFinished;

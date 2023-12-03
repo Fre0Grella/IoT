@@ -30,27 +30,26 @@ void CheckInOutAreaTask::tick() {
     case CAR_WAIT:
         Serial.println(hook->carDistance());
         Serial.println(timeInState());
-        //TODO da fare bene come il vecchio task 
-        if(hook->carDistance() < MIN_DIST && timeInState() > N2) {
+
+        if(hook->carDistance() <= MIN_DIST && timeInState() >= N2) {
             blink->setActive(false);
-            if(!led2->isOn()) led2->switchOn();
+            led2->switchOn();
             screen->print("Ready to Wash");
             gate->closeGate();
             hook->enterWashingArea();
+            led3->switchOff();
             setState(EXIT);
-        }else if(hook->carDistance() > MAX_DIST && timeInState() > N4) { //TODO da fare come vecchio task
+        } else if(hook->carDistance() >= MAX_DIST && timeInState() >= N4) {
+            hook->restartProcess();
+            gate->closeGate();
             setState(SLEEP);
         }
-        break; 
+        break;
     case EXIT:
-        gate->closeGate();
-        led3->switchOff();
         if(hook->isProcessFinished()) {
             hook->restartProcess();
             setState(SLEEP);
         }
-        break;
-    default:
         break;
     }
 }

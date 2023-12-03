@@ -1,10 +1,11 @@
 #include <Hook.h>
 #include <LightTask.h>
+#include <env.h>
+
 Hook::Hook() {
 }
 
 void Hook::init() {
-    
     procedureFinished = false;
     inWashingArea = false;
 }

@@ -29,15 +29,14 @@
 #define MAX_DIST 10 
 #define MAX_TEMP 40
 
-Led* led1 = new Led(L1);
-Led* led2 = new Led(L2);
-Led* led3 = new Led(L3);
-LCD* screen = new LCD();
-Gate* gate = new Gate(GATE);
-Button* but = new ButtonImpl(BUT);
-Sonar* distance = new Sonar(SONAR_ECHO, SONAR_TRG, 10000);
-Pir* detector = new Pir(PIR);
-TemperatureSensor* temp = new TemperatureSensor(TEMPSENSOR);
-
+static Led* led1 = new Led(L1);
+static Led* led2 = new Led(L2);
+static Led* led3 = new Led(L3);
+static LCD* screen = new LCD();
+static Gate* gate = new Gate(GATE);
+static Button* but = new ButtonImpl(BUT);
+static Sonar* distance = new Sonar(SONAR_ECHO, SONAR_TRG, 10000);
+static Pir* detector = new Pir(PIR);
+static TemperatureSensor* temp = new TemperatureSensor(TEMPSENSOR);
 
 #endif

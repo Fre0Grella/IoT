@@ -1,13 +1,13 @@
 #include <BlinkTask.h>
 #include <env.h>
 
-BlinkTask::BlinkTask(int period, int pin){
+BlinkTask::BlinkTask(int period, Led *led) {
   Task::init(period);
-  this->led = new Led(L2); 
+  this->led = led; 
   state = OFF;
 }
 
-void BlinkTask::tick(){
+void BlinkTask::tick() {
   switch (state){
     case OFF:
       led->switchOn();

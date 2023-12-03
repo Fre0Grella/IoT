@@ -9,20 +9,16 @@
 
 Scheduler schedule;
 
-
-
 void setup() {
   Serial.begin(9600);
   schedule.init(200);
-  
+
   screen->init();
   Hook* hook = new Hook();
   hook->init();
-  
 
-  Task* blinkTask = new BlinkTask(100, L2);
+  Task* blinkTask = new BlinkTask(100, led2);
   blinkTask->setActive(false);
-
 
   Task* cIOArea = new CheckInOutAreaTask(hook, blinkTask); 
   cIOArea->init(100);

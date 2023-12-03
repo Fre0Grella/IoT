@@ -1,4 +1,11 @@
 #include "ButtonImpl.h"
+#include "Led.h"
+#include "LCD.h"
+#include "Gate.h"
+#include "TemperatureSensor.h"
+#include "Pir.h"
+#include "Sonar.h"
+
 #ifndef __ENV__
 #define __ENV__
 
@@ -28,6 +35,9 @@ Led* led3 = new Led(L3);
 LCD* screen = new LCD();
 Gate* gate = new Gate(GATE);
 Button* but = new ButtonImpl(BUT);
+Sonar* distance = new Sonar(SONAR_ECHO, SONAR_TRG, 10000);
+Pir* detector = new Pir(PIR);
+TemperatureSensor* temp = new TemperatureSensor(TEMPSENSOR);
 
 
 #endif

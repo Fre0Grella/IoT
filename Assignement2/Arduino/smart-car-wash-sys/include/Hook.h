@@ -29,10 +29,7 @@ class Hook{
         
 
     private:
-        Sonar* distance;
-        Pir* detector;
-        Gate* gate;
-        TemperatureSensor* temp;
+        
         bool procedureFinished;
         bool inWashingArea;
          

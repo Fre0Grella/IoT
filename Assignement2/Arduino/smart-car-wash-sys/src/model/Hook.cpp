@@ -4,9 +4,7 @@ Hook::Hook() {
 }
 
 void Hook::init() {
-    distance = new Sonar(SONAR_ECHO, SONAR_TRG, 10000);
-    detector = new Pir(PIR);
-    temp = new TemperatureSensor(TEMPSENSOR);
+    
     procedureFinished = false;
     inWashingArea = false;
 }

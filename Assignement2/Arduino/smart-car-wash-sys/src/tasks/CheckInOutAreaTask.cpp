@@ -38,7 +38,7 @@ void CheckInOutAreaTask::tick() {
             gate->closeGate();
             hook->enterWashingArea();
             setState(EXIT);
-        }else if(hook->carDistance() > MAX_DIST && timeInState() > N2) { //TODO da fare come vecchio task
+        }else if(hook->carDistance() > MAX_DIST && timeInState() > N4) { //TODO da fare come vecchio task
             setState(SLEEP);
         }
         break; 

@@ -1,3 +1,4 @@
+#include "ButtonImpl.h"
 #ifndef __ENV__
 #define __ENV__
 
@@ -9,6 +10,7 @@
 #define SONAR_ECHO 9
 #define SONAR_TRG 10
 #define TEMPSENSOR 11
+#define BUT 5
 
 #define N1 5000 
 #define N2 4000
@@ -25,6 +27,7 @@ Led* led2 = new Led(L2);
 Led* led3 = new Led(L3);
 LCD* screen = new LCD();
 Gate* gate = new Gate(GATE);
+Button* but = new ButtonImpl(BUT);
 
 
 #endif

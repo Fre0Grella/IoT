@@ -8,14 +8,14 @@
 class WashingAreaTask: public Task{
     private:
         Hook* hook;
-        
-        enum States{WAIT_START} state;
+
+        enum States{WAIT_START,START_WASHING, END_WASHING, WAIT_EXIT, MAINTENANCE} state;
         long stateTimeStamp;
         void setState(States state);
         long timeInState();
 
     public:
-        WashingAreaTask(Hook* hook, LCD* screen);
+        WashingAreaTask(Hook* hook);
         void tick();
 };
 

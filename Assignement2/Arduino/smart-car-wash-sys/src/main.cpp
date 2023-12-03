@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <Scheduler.h>
 #include <BlinkTask.h>
-#include <checkInOutAreaTask.h>
+#include <CheckInOutAreaTask.h>
 #include <Hook.h>
 #include <LCD.h>
 #include <env.h>

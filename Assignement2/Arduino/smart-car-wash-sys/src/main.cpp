@@ -3,6 +3,7 @@
 #include <BlinkTask.h>
 #include <MoveGateTask.h>
 #include <CheckInOutAreaTask.h>
+#include <WashingAreaTask.h>
 #include <Hook.h>
 #include <LCD.h>
 #include <env.h>
@@ -19,11 +20,14 @@ void setup() {
   blinkTask->setActive(false);
 
   Task* cIOArea = new CheckInOutAreaTask(hook, blinkTask, screen, gate); 
-  cIOArea->init(100);
+  cIOArea->init(200);
 
-  
+  Task* washArea = new WashingAreaTask(hook);
+  washArea->init(200);
+
   schedule.addTask(cIOArea);
   schedule.addTask(blinkTask);
+  schedule.addTask(washArea);
 }
 
 void loop() {

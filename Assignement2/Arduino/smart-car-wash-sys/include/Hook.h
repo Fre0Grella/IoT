@@ -15,13 +15,9 @@ class Hook{
     public: 
         Hook();
         void init();
-        void printOnLCD(String message);
-        void lightOn(int led);
+        bool carPresence();
+
     private:
-        Led* led1;
-        Led* led2;
-        Led* led3;
-        LCD* display;
         Sonar* distance;
         Pir* detector;
         Gate* gate;

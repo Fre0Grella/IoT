@@ -2,6 +2,7 @@
 #include <env.h>
 
 WelcomeTask::WelcomeTask(Hook* hook) {
+    Task::init();
     this->hook = hook;
 }
 

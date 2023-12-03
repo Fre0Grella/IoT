@@ -21,8 +21,8 @@
 
 #define N1 5000 
 #define N2 4000
-#define N3 10
-#define N4 5
+#define N3 7000
+#define N4 3000
 
 
 #define MIN_DIST 5 

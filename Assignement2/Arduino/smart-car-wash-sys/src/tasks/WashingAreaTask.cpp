@@ -1,9 +1,10 @@
 #include <WashingAreaTask.h>
 
-WashingAreaTask::WashingAreaTask(Hook* hook) {
+WashingAreaTask::WashingAreaTask(Hook* hook, Task* blink) {
     this->hook = hook;
+    this->blink = blink; 
     setState(WAIT_START);
-} 
+}
 
 void WashingAreaTask::tick() {
     switch (state)
@@ -13,6 +14,7 @@ void WashingAreaTask::tick() {
             Serial.println("Ciao");
             but->sync();
             if(but->isPressed()) {
+                blink->setActive(true);
                 setState(START_WASHING);
             }
         }
@@ -27,26 +29,29 @@ void WashingAreaTask::tick() {
         }
     
         if (timeInState() > N3) {
+            blink->setActive(false);
             setState(END_WASHING);
         }
 
         //TODO add temperature control for enter maintenance mode
-    break;
+        break;
 
     case END_WASHING:
         led2->switchOff();
         led3->switchOn();
         screen->print("Washing complete, you can leave the area");
+        gate->on();
         gate->openGate();
-    break;
+        delay(1000);
+        break;
 
     case WAIT_EXIT:
-        //TODO da fare come vecchio task v
-        if(hook->carDistance() > MAX_DIST && timeInState() > N4) { 
+        if(hook->carDistance() >= MAX_DIST && timeInState() >= N4) { 
             hook->exitWashingArea();
+            led3->switchOff();
             setState(WAIT_START);
         }
-    break;
+        break;
 
     case MAINTENANCE:
         screen->print("Detected a Problem - Please Wait");
@@ -54,7 +59,7 @@ void WashingAreaTask::tick() {
         //TODO Write the gui for the maintenance
 
         setState(START_WASHING);
-    break;
+        break;
 
     }
 }

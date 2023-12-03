@@ -1,8 +1,7 @@
 #include <WashingAreaTask.h>
 
-WashingAreaTask::WashingAreaTask(Hook* hook, LCD* screen) {
+WashingAreaTask::WashingAreaTask(Hook* hook) {
     this->hook = hook;
-    this->screen = screen;
     setState(WAIT_START);
 } 
 

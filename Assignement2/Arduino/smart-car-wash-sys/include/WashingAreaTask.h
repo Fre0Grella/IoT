@@ -8,7 +8,7 @@
 class WashingAreaTask: public Task{
     private:
         Hook* hook;
-        LCD* screen;
+        
         enum States{WAIT_START} state;
         long stateTimeStamp;
         void setState(States state);

@@ -7,16 +7,13 @@
 class CheckInOutAreaTask: public Task{
     private:
         Hook* hook;
-        Led* led1;
-        Led* led2;
-        LCD* screen;
         Task* blink;
         long stateTimeStamp;
-        enum States{SLEEP, WELCOME, OPEN_GATE, CAR_WAIT, EXIT}state;
+        enum States{SLEEP, WELCOME, CAR_WAIT, EXIT}state;
         void setState(States state);
         long timeInState();
     public:
-        CheckInOutAreaTask(Hook* hook, LCD* screen, Task* blink);
+        CheckInOutAreaTask(Hook* hook, Task* blink);
         void tick();
 };
 

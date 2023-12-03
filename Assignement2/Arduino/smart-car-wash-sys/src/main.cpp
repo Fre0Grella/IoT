@@ -1,8 +1,10 @@
 #include <Arduino.h>
 #include <Scheduler.h>
-#include <WelcomeTask.h>
+#include <BlinkTask.h>
+#include <checkInOutAreaTask.h>
 #include <Hook.h>
 #include <LCD.h>
+#include <env.h>
 
 Scheduler schedule;
 
@@ -12,9 +14,15 @@ void setup() {
   LCD* screen = new LCD();
   screen->init();
   Hook* hook = new Hook();
-  Task* welcome = new WelcomeTask(hook);
-  welcome->setActive(true);
-  schedule.addTask(welcome);
+  hook->init();
+
+  Task* blinkTask = new BlinkTask(100, L2);
+  blinkTask->setActive(false);
+
+  Task* cIOArea = new CheckInOutAreaTask(hook, screen, blinkTask); 
+  cIOArea->init(100);
+  schedule.addTask(cIOArea);
+  schedule.addTask(blinkTask);
 }
 
 void loop() {

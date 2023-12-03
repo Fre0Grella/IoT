@@ -1,9 +1,9 @@
-#include "Sonar.h"
+#include <Sonar.h>
 
 #include "Arduino.h"
 
-Sonar::Sonar(int echoP) : echoPin(echoP) {
-  pinMode(echoPin, OUTPUT);
+Sonar::Sonar(int echoP, int trigP, long maxTime) : echoPin(echoP), trigPin(trigP), timeOut(maxTime){
+  pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);  
   temperature = 20; // default value
 }
@@ -16,19 +16,19 @@ float Sonar::getSoundSpeed(){
 }
 
 float Sonar::getDistance(){
-    digitalWrite(echoPin,LOW);
+    digitalWrite(trigPin,LOW);
     delayMicroseconds(3);
-    digitalWrite(echoPin,HIGH);
+    digitalWrite(trigPin,HIGH);
     delayMicroseconds(5);
-    digitalWrite(echoPin,LOW);
+    digitalWrite(trigPin,LOW);
     
-    float tUS = pulseIn(echoPin, HIGH);
+    float tUS = pulseIn(echoPin, HIGH, timeOut);
     if (tUS == 0) {
         return NO_OBJ_DETECTED;
     } else {
         float t = tUS / 1000.0 / 1000.0 / 2;
         float d = t*getSoundSpeed();
-        return d;
+        return d;  
     }
 }
 

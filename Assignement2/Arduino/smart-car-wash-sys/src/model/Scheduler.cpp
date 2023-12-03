@@ -1,6 +1,5 @@
 #include <Scheduler.h>
 #include <TimerOne.h>
-
 volatile bool timerFlag;
 
 void timerHandler(void){
@@ -31,14 +30,17 @@ void Scheduler::schedule(){
   timerFlag = false;
 
   for (int i = 0; i < nTasks; i++){
-    if (taskList[i]->isActive() && taskList[i]->updateAndCheckTime(basePeriod)){
-      taskList[i]->tick();
+    if (taskList[i]->isActive()){
+      if (taskList[i]->isPeriodic()){
+        if (taskList[i]->updateAndCheckTime(basePeriod)){
+          taskList[i]->tick();
+        }
+      } else {
+        taskList[i]->tick();
+        if (taskList[i]->isCompleted()){
+          taskList[i]->setActive(false);
+        }
+      }
     }
-  }
-}
-
-void Scheduler::deactivateAll() {
-  for (Task* t : taskList) {
-    t->setActive(false);
   }
 }

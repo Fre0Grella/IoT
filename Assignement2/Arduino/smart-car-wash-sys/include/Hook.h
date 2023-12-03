@@ -16,6 +16,7 @@ class Hook{
         Hook();
         void init();
         bool carPresence();
+        float carDistance();
 
     private:
         Sonar* distance;

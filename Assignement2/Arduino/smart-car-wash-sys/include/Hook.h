@@ -18,11 +18,23 @@ class Hook{
         bool carPresence();
         float carDistance();
 
+        void enterWashingArea();
+        void exitWashingArea();
+        bool washing();
+
+        void finishProcess();
+        void restartProcess();
+        bool isProcessFinished();
+
+        
+
     private:
         Sonar* distance;
         Pir* detector;
         Gate* gate;
         TemperatureSensor* temp;
+        bool procedureFinished;
+        bool inWashingArea;
          
 };
 

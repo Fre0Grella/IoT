@@ -41,11 +41,18 @@ void CheckInOutAreaTask::tick() {
             blink->setActive(false);
             if(!led2->isOn()) led2->switchOn();
             screen->print("Ready to Wash");
+            hook->enterWashingArea();
             setState(EXIT);
         }else if(timeInState() > N2) {
             setState(OPEN_GATE);
         }
         break; 
+    case EXIT:
+        if(hook->isProcessFinished()) {
+            hook->restartProcess();
+            setState(SLEEP);
+        }
+        break;
     default:
         break;
     }

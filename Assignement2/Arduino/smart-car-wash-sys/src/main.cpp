@@ -8,11 +8,9 @@
 #include <env.h>
 
 Scheduler schedule;
-
 void setup() {
   Serial.begin(9600);
   schedule.init(200);
-
   screen->init();
   Hook* hook = new Hook();
   hook->init();
@@ -20,8 +18,10 @@ void setup() {
   Task* blinkTask = new BlinkTask(100, led2);
   blinkTask->setActive(false);
 
-  Task* cIOArea = new CheckInOutAreaTask(hook, blinkTask); 
+  Task* cIOArea = new CheckInOutAreaTask(hook, blinkTask, screen, gate); 
   cIOArea->init(100);
+
+  
   schedule.addTask(cIOArea);
   schedule.addTask(blinkTask);
 }

@@ -1,9 +1,11 @@
 #include <CheckInOutAreaTask.h>
 #include <env.h>
 
-CheckInOutAreaTask::CheckInOutAreaTask(Hook* hook, Task* blink) {
+CheckInOutAreaTask::CheckInOutAreaTask(Hook* hook, Task* blink, LCD* screen, Gate* gate) {
     this->hook = hook;
     this->blink = blink;  
+    this->screen = screen;
+    this->gate = gate;
     setState(SLEEP);
 }
 
@@ -13,7 +15,9 @@ void CheckInOutAreaTask::tick() {
     case SLEEP:
     //TODO aggiungere una vera sleep 
         if(hook->carPresence()) {
-            led1->switchOn();
+            if(!led1->isOn()){
+                led1->switchOn();
+            }
             screen->print("Welcome!");
             setState(WELCOME);
         }
@@ -23,19 +27,23 @@ void CheckInOutAreaTask::tick() {
             led1->switchOff();
             screen->print("Proceed to the Washing Area");
             blink->setActive(true);
+            gate->on();
             gate->openGate();
+            delay(1000);
             setState(CAR_WAIT);
         }
         break;
     case CAR_WAIT:
-        Serial.println(hook->carDistance());
-        Serial.println(timeInState());
+        //Serial.println(hook->carDistance());
+        //Serial.println(timeInState());
 
-        if(hook->carDistance() <= MIN_DIST && timeInState() >= N2) {
+        if(hook->carDistance() <= MIN_DIST && timeInState() >= N2 && gate->isOpen()) {
             blink->setActive(false);
             led2->switchOn();
             screen->print("Ready to Wash");
             gate->closeGate();
+            delay(1000);
+            gate->off();
             hook->enterWashingArea();
             led3->switchOff();
             setState(EXIT);

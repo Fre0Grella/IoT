@@ -36,7 +36,6 @@ bool Hook::isProcessFinished() {
 
 bool Hook::carPresence() {
     detector->sync();
-    Serial.println(detector->isDetected());
     return detector->isDetected();
 }
 

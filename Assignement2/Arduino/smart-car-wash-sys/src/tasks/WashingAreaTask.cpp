@@ -10,6 +10,7 @@ void WashingAreaTask::tick() {
     {
     case WAIT_START:
         if(hook->washing()) {
+            Serial.println("Ciao");
             if(but->isPressed()) {
                 setState(START_WASHING);
             }

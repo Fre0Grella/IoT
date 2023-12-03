@@ -9,11 +9,13 @@ class CheckInOutAreaTask: public Task{
         Hook* hook;
         Task* blink;
         long stateTimeStamp;
+        LCD* screen;
+        Gate* gate;
         enum States{SLEEP, WELCOME, CAR_WAIT, EXIT}state;
         void setState(States state);
         long timeInState();
     public:
-        CheckInOutAreaTask(Hook* hook, Task* blink);
+        CheckInOutAreaTask(Hook* hook, Task* blink, LCD* screen, Gate* gate);
         void tick();
 };
 

@@ -8,18 +8,17 @@
 class Gate: public ServoMotor {
     public:
         Gate(int pin);
-        void move(int angle);
+        void on();
+        void setPosition(int angle);
+        void off();
         void openGate();
-        void closeGate();
         bool isOpen();
+        void closeGate();
     private:
         int pin;
         ServoTimer2 motor;
-        const int millisec = 10;
-        const int open = 180;
-        const int close = 90;
-
-
+        int open;
+        int close;
 };
 
 

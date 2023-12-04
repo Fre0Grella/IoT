@@ -39,14 +39,14 @@ void WashingAreaTask::tick() {
         screen->print("Washing complete, you can leave the area");
         gate->on();
         gate->openGate();
-        delay(1000);
         setState(WAIT_EXIT);
         break;
 
     case WAIT_EXIT:
-        if(hook->carDistance() >= MAX_DIST && timeInState() >= N4) { 
+        if(distance->getDistance() >= MAX_DIST && timeInState() >= N4) { 
             hook->exitWashingArea();
             led3->switchOff();
+            gate->closeGate();
             setState(WAIT_START);
         }
         break;

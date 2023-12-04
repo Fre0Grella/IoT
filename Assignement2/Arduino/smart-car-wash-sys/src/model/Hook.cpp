@@ -16,6 +16,7 @@ void Hook::enterWashingArea() {
 
 void Hook::exitWashingArea() {
     inWashingArea = false;
+    procedureFinished = true;
 }
 
 bool Hook::washing() {

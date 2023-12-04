@@ -32,11 +32,13 @@ void Gate::setPosition(int angle)
 void Gate::openGate() {
     Serial.println("Gate Opening");
     setPosition(open);
+    delay(1000);
 }
 
 void Gate::closeGate() {
     Serial.println("Gate Closing");
     setPosition(close);
+    delay(1000);
 }
 
 bool Gate::isOpen() {

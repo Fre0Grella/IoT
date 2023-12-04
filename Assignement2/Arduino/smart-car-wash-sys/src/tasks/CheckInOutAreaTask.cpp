@@ -15,19 +15,21 @@ void CheckInOutAreaTask::tick() {
     case SLEEP:
     //TODO aggiungere una vera sleep 
         if(hook->carPresence()) {
+            screen->backLighOn();
             if(!led1->isOn()){
                 led1->switchOn();
             }
             screen->print("Welcome!");
             setState(WELCOME);
+        }else {
+            screen->backLightOff();
         }
         break;
     case WELCOME:
         if(timeInState() > N1) {
             led1->switchOff();
-            screen->print("Proceed to the Washing Area");
             blink->setActive(true);
-            gate->on();
+            screen->print("Proceed to the Washing Area");
             gate->openGate();
             delay(1000);
             setState(CAR_WAIT);
@@ -36,28 +38,32 @@ void CheckInOutAreaTask::tick() {
     case CAR_WAIT:
         //Serial.println(hook->carDistance());
         //Serial.println(timeInState());
-
-        if(hook->carDistance() <= MIN_DIST && timeInState() >= N2 && gate->isOpen()) {
+        Serial.println(distance->getDistance());
+        if(distance->getDistance() <= MIN_DIST && timeInState() >= N2 && gate->isOpen()) {
             blink->setActive(false);
             led2->switchOn();
             screen->print("Ready to Wash");
             gate->closeGate();
             delay(1000);
-            gate->off();
             hook->enterWashingArea();
             led3->switchOff();
             setState(EXIT);
-        } else if(hook->carDistance() >= MAX_DIST && timeInState() >= N4) {
-            hook->restartProcess();
+        } else if(distance->getDistance() >= MAX_DIST && timeInState() >= N4) {
+            blink->setActive(false);
+            led2->switchOff();
             gate->closeGate();
+            hook->restartProcess();
             setState(SLEEP);
         }
         break;
     case EXIT:
         if(hook->isProcessFinished()) {
+            Serial.println("diobestia");
             hook->restartProcess();
             setState(SLEEP);
         }
+        break;
+    default:
         break;
     }
 }

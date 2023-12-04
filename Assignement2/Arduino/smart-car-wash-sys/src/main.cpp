@@ -13,6 +13,7 @@ void setup() {
   Serial.begin(9600);
   schedule.init(200);
   screen->init();
+  gate->on();
   Hook* hook = new Hook();
   hook->init();
 
@@ -34,5 +35,6 @@ void setup() {
 }
 
 void loop() {
+  //Serial.println(distance->getDistance());
   schedule.schedule();
 }

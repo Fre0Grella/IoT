@@ -51,6 +51,10 @@ void WashingAreaTask::tick() {
             led3->switchOff();
             setState(WAIT_START);    
             }
+        } else if (temp->isOverheat(MAX_TEMP)){
+            if (timeInState() >= N4) {
+                setState(MAINTENANCE);
+            }
         } else {
             setState(WAIT_EXIT);
         }

@@ -1,8 +1,9 @@
 #include <WashingAreaTask.h>
 
-WashingAreaTask::WashingAreaTask(Hook* hook, Task* blink) {
+WashingAreaTask::WashingAreaTask(Hook* hook, Task* blink, LCD* screen) {
     this->hook = hook;
     this->blink = blink; 
+    this->screen = screen;
     setState(WAIT_START);
 }
 
@@ -22,11 +23,7 @@ void WashingAreaTask::tick() {
     
     case START_WASHING:
         // this "if" is for displaying the countdown
-        if (timeInState() % 1000 == 0) {
-            double ltod = N3 - (timeInState()%1000);
-            String s = String(ltod, DEC);
-            screen->print(s);
-        }
+        screen->print(String((N3 - timeInState())/1000, DEC));
     
         if (timeInState() > N3) {
             blink->setActive(false);
@@ -43,6 +40,7 @@ void WashingAreaTask::tick() {
         gate->on();
         gate->openGate();
         delay(1000);
+        setState(WAIT_EXIT);
         break;
 
     case WAIT_EXIT:

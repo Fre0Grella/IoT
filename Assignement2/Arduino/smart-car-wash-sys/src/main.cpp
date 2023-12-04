@@ -25,7 +25,7 @@ void setup() {
   Task* cIOArea = new CheckInOutAreaTask(hook, blinkTask, screen, gate); 
   cIOArea->init(200);
 
-  Task* washArea = new WashingAreaTask(hook, blinkTaskWash);
+  Task* washArea = new WashingAreaTask(hook, blinkTaskWash, screen);
   washArea->init(200);
 
   schedule.addTask(cIOArea);

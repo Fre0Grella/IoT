@@ -1,5 +1,7 @@
 #include <CheckInOutAreaTask.h>
 #include <env.h>
+#include <avr/sleep.h>
+#include <EnableInterrupt.h>
 
 CheckInOutAreaTask::CheckInOutAreaTask(Hook* hook, Task* blink, LCD* screen, Gate* gate) {
     this->hook = hook;
@@ -14,16 +16,17 @@ void CheckInOutAreaTask::tick() {
     {
     case SLEEP:
     //TODO aggiungere una vera sleep 
-        if(hook->carPresence()) {
-            screen->backLighOn();
-            if(!led1->isOn()){
-                led1->switchOn();
-            }
-            screen->print("Welcome!");
-            setState(WELCOME);
-        }else {
-            screen->backLightOff();
+        attachInterrupt(digitalPinToInterrupt(PIR),[]() {}, CHANGE);
+        set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+        sleep_enable();
+        sleep_mode();
+        sleep_disable();
+        detachInterrupt(digitalPinToInterrupt(PIR));
+        if(!led1->isOn()){
+            led1->switchOn();
         }
+        screen->print("Welcome!");
+        setState(WELCOME);
         break;
     case WELCOME:
         if(timeInState() > N1) {

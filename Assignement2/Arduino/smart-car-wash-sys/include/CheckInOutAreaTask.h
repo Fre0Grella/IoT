@@ -10,6 +10,12 @@ class CheckInOutAreaTask: public Task{
         Hook* hook;
         Task* blink;
         long stateTimeStamp;
+        /**time on detection*/
+        long elapsedTime;
+        /**variable used to check if the distance detector was detecting for MINDIST when it goes directly on MAXDIST*/
+        bool min;
+        /**variable used to check if the distance detector was detecting for MAXDIST when it goes directly on MINDIST*/
+        bool max;
         LCD* screen;
         Gate* gate;
         enum States{SLEEP, WELCOME, CAR_WAIT, EXIT}state;

@@ -34,18 +34,3 @@ void Hook::restartProcess() {
 bool Hook::isProcessFinished() {
     return procedureFinished;
 }
-
-/*bool Hook::carPresence() {
-    detector->sync();
-    return detector->isDetected();
-}*/
-
-float Hook::carDistance() {
-    //Serial.print(distance->getDistance());
-    //return distance->getDistance();
-    return 4;
-}
-
-
-
-

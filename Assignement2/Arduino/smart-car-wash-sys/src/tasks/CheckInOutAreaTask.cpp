@@ -7,12 +7,14 @@ CheckInOutAreaTask::CheckInOutAreaTask(Hook* hook, Task* blink, LCD* screen, Gat
     this->blink = blink;  
     this->screen = screen;
     this->gate = gate;
+    this->elapsedTime = 0;
+    this->min = false;
+    this->max = false;
     setState(SLEEP);
 }
 
 void CheckInOutAreaTask::tick() {
-    switch (state)
-    {
+    switch (state) {
     case SLEEP:
     //TODO aggiungere una vera sleep 
         attachInterrupt(digitalPinToInterrupt(PIR),[]() {}, CHANGE);
@@ -25,6 +27,7 @@ void CheckInOutAreaTask::tick() {
             led1->switchOn();
         }
         screen->print("Welcome!");
+        this->elapsedTime = millis();
         setState(WELCOME);
         break;
     case WELCOME:
@@ -37,23 +40,39 @@ void CheckInOutAreaTask::tick() {
         }
         break;
     case CAR_WAIT:
-        //Serial.println(hook->carDistance());
-        //Serial.println(timeInState());
         Serial.println(distance->getDistance());
-        if(distance->getDistance() <= MIN_DIST && timeInState() >= N2 && gate->isOpen()) {
-            blink->setActive(false);
-            led2->switchOn();
-            screen->print("Ready to Wash");
-            gate->closeGate();
-            hook->enterWashingArea();
-            led3->switchOff();
-            setState(EXIT);
-        } else if(distance->getDistance() >= MAX_DIST && timeInState() >= N4) {
-            blink->setActive(false);
-            led2->switchOff();
-            gate->closeGate();
-            hook->restartProcess();
-            setState(SLEEP);
+        if(distance->getDistance() <= MIN_DIST) {
+            this->min = true;
+            if (this->max) {
+                this->max = false;
+                this->elapsedTime = millis();
+            }
+            if ((millis() - this->elapsedTime) >= N2) {
+                blink->setActive(false);
+                led2->switchOn();
+                screen->print("Ready to Wash");
+                gate->closeGate();
+                hook->enterWashingArea();
+                led3->switchOff();
+                setState(EXIT);
+            }
+        } else if(distance->getDistance() >= MAX_DIST) {
+            this->max = true;
+            if(this->min) {
+                this->min = false;
+                this->elapsedTime = millis();
+            }
+            if((millis() - this->elapsedTime) >= N4) {
+                blink->setActive(false);
+                led2->switchOff();
+                gate->closeGate();
+                hook->restartProcess();
+                setState(SLEEP);
+            }
+        } else {
+            this->max = false;
+            this->min = false;
+            this->elapsedTime = millis();
         }
         break;
     case EXIT:

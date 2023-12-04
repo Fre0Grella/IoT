@@ -15,12 +15,14 @@ void CheckInOutAreaTask::tick() {
     {
     case SLEEP:
     //TODO aggiungere una vera sleep 
+        Serial.println("sto cazz");
         attachInterrupt(digitalPinToInterrupt(PIR),[]() {}, CHANGE);
         set_sleep_mode(SLEEP_MODE_PWR_DOWN);
         sleep_enable();
         sleep_mode();
         sleep_disable();
         detachInterrupt(digitalPinToInterrupt(PIR));
+        Serial.println("sto cazz2");
         if(!led1->isOn()){
             led1->switchOn();
         }
@@ -40,13 +42,12 @@ void CheckInOutAreaTask::tick() {
         //Serial.println(hook->carDistance());
         //Serial.println(timeInState());
         Serial.println(distance->getDistance());
-        if(distance->getDistance() <= MIN_DIST && timeInState() >= N2 && gate->isOpen()) {
+        if(distance->getDistance() <= MIN_DIST && timeInState() >= N2 ) {
             blink->setActive(false);
             led2->switchOn();
             screen->print("Ready to Wash");
             gate->closeGate();
             hook->enterWashingArea();
-            led3->switchOff();
             setState(EXIT);
         } else if(distance->getDistance() >= MAX_DIST && timeInState() >= N4) {
             blink->setActive(false);

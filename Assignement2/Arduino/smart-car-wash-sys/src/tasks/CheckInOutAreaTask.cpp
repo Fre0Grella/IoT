@@ -17,12 +17,14 @@ void CheckInOutAreaTask::tick() {
     switch (state) {
     case SLEEP:
     //TODO aggiungere una vera sleep 
+        Serial.println("sto cazz");
         attachInterrupt(digitalPinToInterrupt(PIR),[]() {}, CHANGE);
         set_sleep_mode(SLEEP_MODE_PWR_DOWN);
         sleep_enable();
         sleep_mode();
         sleep_disable();
         detachInterrupt(digitalPinToInterrupt(PIR));
+        Serial.println("sto cazz2");
         if(!led1->isOn()){
             led1->switchOn();
         }

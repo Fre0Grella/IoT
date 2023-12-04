@@ -44,10 +44,15 @@ void WashingAreaTask::tick() {
         break;
 
     case WAIT_EXIT:
-        if(hook->carDistance() >= MAX_DIST && timeInState() >= N4) { 
-            hook->exitWashingArea();
+    //This way should follow the assignement 
+        if(hook->carDistance() >= MAX_DIST) {
+            if (timeInState() >= N4) {
+                hook->exitWashingArea();
             led3->switchOff();
-            setState(WAIT_START);
+            setState(WAIT_START);    
+            }
+        } else {
+            setState(WAIT_EXIT);
         }
         break;
 

@@ -36,21 +36,27 @@ void CheckInOutAreaTask::tick() {
     case CAR_WAIT:
         //Serial.println(hook->carDistance());
         //Serial.println(timeInState());
-
-        if(hook->carDistance() <= MIN_DIST && timeInState() >= N2 && gate->isOpen()) {
-            blink->setActive(false);
-            led2->switchOn();
-            screen->print("Ready to Wash");
-            gate->closeGate();
-            delay(1000);
-            gate->off();
-            hook->enterWashingArea();
-            led3->switchOff();
-            setState(EXIT);
-        } else if(hook->carDistance() >= MAX_DIST && timeInState() >= N4) {
-            hook->restartProcess();
+        //in this way it should follow the assignement
+        if(hook->carDistance() <= MIN_DIST && gate->isOpen()) {
+            if (timeInState() >= N2) {
+                blink->setActive(false);
+                led2->switchOn();
+                screen->print("Ready to Wash");
+                gate->closeGate();
+                delay(1000);
+                gate->off();
+                hook->enterWashingArea();
+                led3->switchOff();
+                setState(EXIT);
+            } 
+        } else if(hook->carDistance() >= MAX_DIST) {
+            if (timeInState() >= N4) {
+                hook->restartProcess();
             gate->closeGate();
             setState(SLEEP);
+            }
+        } else {
+            setState(CAR_WAIT);
         }
         break;
     case EXIT:

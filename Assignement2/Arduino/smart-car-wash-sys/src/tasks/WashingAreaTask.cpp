@@ -49,8 +49,12 @@ void WashingAreaTask::tick() {
             gate->closeGate();
             setState(WAIT_START);
         }
+        if (temp->isOverheat(MAX_TEMP)){
+            if (timeInState() >= N4) {
+                setState(MAINTENANCE);
+            }
+        } 
         break;
-
     case MAINTENANCE:
         screen->print("Detected a Problem - Please Wait");
 

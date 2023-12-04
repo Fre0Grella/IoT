@@ -31,7 +31,6 @@ void CheckInOutAreaTask::tick() {
             blink->setActive(true);
             screen->print("Proceed to the Washing Area");
             gate->openGate();
-            delay(1000);
             setState(CAR_WAIT);
         }
         break;
@@ -44,7 +43,6 @@ void CheckInOutAreaTask::tick() {
             led2->switchOn();
             screen->print("Ready to Wash");
             gate->closeGate();
-            delay(1000);
             hook->enterWashingArea();
             led3->switchOff();
             setState(EXIT);
@@ -58,7 +56,6 @@ void CheckInOutAreaTask::tick() {
         break;
     case EXIT:
         if(hook->isProcessFinished()) {
-            Serial.println("diobestia");
             hook->restartProcess();
             setState(SLEEP);
         }

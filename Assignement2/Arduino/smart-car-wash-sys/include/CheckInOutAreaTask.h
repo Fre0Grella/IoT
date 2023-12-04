@@ -3,6 +3,7 @@
 #include <Task.h>
 #include <Hook.h>
 #include <BlinkTask.h>
+#include <avr/sleep.h>
 
 class CheckInOutAreaTask: public Task{
     private:

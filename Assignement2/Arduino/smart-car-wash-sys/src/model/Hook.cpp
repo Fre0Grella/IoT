@@ -35,10 +35,10 @@ bool Hook::isProcessFinished() {
     return procedureFinished;
 }
 
-bool Hook::carPresence() {
+/*bool Hook::carPresence() {
     detector->sync();
     return detector->isDetected();
-}
+}*/
 
 float Hook::carDistance() {
     //Serial.print(distance->getDistance());

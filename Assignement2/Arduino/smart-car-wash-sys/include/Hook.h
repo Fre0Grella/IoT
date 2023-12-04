@@ -15,7 +15,7 @@ class Hook{
     public: 
         Hook();
         void init();
-        bool carPresence();
+        //bool carPresence();
         float carDistance();
 
         void enterWashingArea();

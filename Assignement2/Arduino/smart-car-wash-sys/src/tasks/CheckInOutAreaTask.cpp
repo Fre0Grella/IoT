@@ -1,7 +1,6 @@
 #include <CheckInOutAreaTask.h>
 #include <env.h>
-#include <avr/sleep.h>
-#include <EnableInterrupt.h>
+
 
 CheckInOutAreaTask::CheckInOutAreaTask(Hook* hook, Task* blink, LCD* screen, Gate* gate) {
     this->hook = hook;

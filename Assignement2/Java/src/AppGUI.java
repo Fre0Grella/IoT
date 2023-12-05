@@ -2,13 +2,13 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Finestra implements ActionListener {
+public class AppGUI implements ActionListener {
 
     JFrame frame;
     JButton bottone;
-    SerialCommChannel serial = new SerialCommChannel(9600);
+    SerialCommChannel serial;
 
-    public Finestra() {
+    public AppGUI() {
         frame = new JFrame();
 
         bottone = new JButton("Maintanance Done!");
@@ -27,7 +27,7 @@ public class Finestra implements ActionListener {
     }
 
     public static void main(String[] args) {
-        Finestra f = new Finestra();
+        AppGUI f = new AppGUI();
     }
 
     // Questo è il metodo che verrà chiamato quando clicchiamo il bottone

@@ -36,6 +36,8 @@ void setup() {
 
 void loop() {
   //Serial.println(distance->getDistance());
+  //Serial.println(temperature->detectTemperature());
+  //delay(1000);
   schedule.schedule();
   //Serial.println(temp->detectTemperature());
 }

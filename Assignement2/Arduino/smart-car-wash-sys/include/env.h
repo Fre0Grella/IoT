@@ -12,11 +12,11 @@
 #define L1 8
 #define L2 3
 #define L3 4
-#define GATE 6 
+#define GATE 6
 #define PIR 2
 #define SONAR_ECHO 9
 #define SONAR_TRG 10
-#define TEMPSENSOR 11
+#define TEMPSENSOR A0
 #define BUT 5
 
 #define N1 5000 
@@ -27,7 +27,7 @@
 
 #define MIN_DIST 0.30
 #define MAX_DIST 0.70 
-#define MAX_TEMP 40
+#define MAX_TEMP 27
 
 static Led* led1 = new Led(L1);
 static Led* led2 = new Led(L2);

@@ -4,16 +4,23 @@
 const int SENSOR_ERROR_CELSIUS = 0.005;
 const int MV_TO_CELSIUS = 0.48828125;
 
-TemperatureSensor::TemperatureSensor(int pin) {
-    this->value = analogRead(pin);
+TemperatureSensor::TemperatureSensor(int pin)
+{
+    this->pin = pin;
+    this->value = 0;
 }
 
-float TemperatureSensor::detectTemperature() {
-    int value_in_mV = 4.8876 * value;
-    double value_in_C = value_in_mV * 0.1;
-    return value_in_C;
+float TemperatureSensor::detectTemperature()
+{
+    // leggo dalla porta A0
+    // converto il segnale acquisito in un valore
+    // espresso in gradi centigradi
+    value = ((analogRead(this->pin)* 0.00488) - 0.5) / 0.01;
+    // invio il dato sulla seriale
+    return value;
 }
 
-bool TemperatureSensor::isOverheat(int max_temp) {
+bool TemperatureSensor::isOverheat(int max_temp)
+{
     return this->detectTemperature() > max_temp;
 }

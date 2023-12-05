@@ -14,10 +14,13 @@ CheckInOutAreaTask::CheckInOutAreaTask(Hook* hook, Task* blink, LCD* screen, Gat
 }
 
 void CheckInOutAreaTask::tick() {
+    float dist;
     switch (state) {
     case SLEEP:
     //TODO aggiungere una vera sleep 
         Serial.println("sto cazz");
+        screen->backLightOff();
+        screen->clear();
         attachInterrupt(digitalPinToInterrupt(PIR),[]() {}, CHANGE);
         set_sleep_mode(SLEEP_MODE_PWR_DOWN);
         sleep_enable();
@@ -25,11 +28,11 @@ void CheckInOutAreaTask::tick() {
         sleep_disable();
         detachInterrupt(digitalPinToInterrupt(PIR));
         Serial.println("sto cazz2");
+        screen->backLighOn();
         if(!led1->isOn()){
             led1->switchOn();
         }
         screen->print("Welcome!");
-        this->elapsedTime = millis();
         setState(WELCOME);
         break;
     case WELCOME:
@@ -39,11 +42,13 @@ void CheckInOutAreaTask::tick() {
             screen->print("Proceed to the Washing Area");
             gate->openGate();
             setState(CAR_WAIT);
+            this->elapsedTime = millis();
         }
         break;
     case CAR_WAIT:
-        Serial.println(distance->getDistance());
-        if(distance->getDistance() <= MIN_DIST) {
+        dist = distance->getDistance();
+        Serial.println(dist);
+        if(dist <= MIN_DIST && dist >= 0) {
             this->min = true;
             if (this->max) {
                 this->max = false;
@@ -58,7 +63,7 @@ void CheckInOutAreaTask::tick() {
                 led3->switchOff();
                 setState(EXIT);
             }
-        } else if(distance->getDistance() >= MAX_DIST) {
+        } else if(dist >= MAX_DIST || dist == NO_OBJ_DETECTED) {
             this->max = true;
             if(this->min) {
                 this->min = false;

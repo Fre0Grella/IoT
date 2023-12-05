@@ -25,8 +25,8 @@
 #define N4 3000
 
 
-#define MIN_DIST 0.05
-#define MAX_DIST 0.15 
+#define MIN_DIST 0.30
+#define MAX_DIST 0.70 
 #define MAX_TEMP 40
 
 static Led* led1 = new Led(L1);

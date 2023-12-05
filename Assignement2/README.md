@@ -5,3 +5,13 @@ https://lucid.app/lucidchart/6d24ce47-a0b3-455f-98e1-c2ebd56b11ad/edit?viewport_
 #link per schema Tinkercad
 
 https://www.tinkercad.com/things/1udeQZqiijc-assignement2-smartwash/editel
+
+# Description of the solution of the project
+
+## Initial Approach
+
+Initially, we implemented a solution where all the components had his own task which could have been active or not.
+
+## Actual Solution
+
+After having some dependencies problems by using the first method we decided to totally change approach and created only few tasks grouping all the others and dividing them by states. The first of the two main tasks is implementing the sleep of the Arduino and the whole part about the check in out Area, on the second task there's the part about the washing area where there's even the maintanance control using the temperature sensor.

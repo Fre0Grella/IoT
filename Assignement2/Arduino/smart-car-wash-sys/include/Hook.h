@@ -23,9 +23,10 @@ class Hook{
         void finishProcess();
         void restartProcess();
         bool isProcessFinished();
+        int getWashCount();
 
     private:
-        
+        int washCount;
         bool procedureFinished;
         bool inWashingArea;
          

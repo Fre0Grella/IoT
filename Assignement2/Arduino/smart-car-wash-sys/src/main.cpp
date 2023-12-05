@@ -21,7 +21,7 @@ void setup() {
   blinkTask->setActive(false);
 
   Task* blinkTaskWash = new BlinkTask(500, led2);
-  blinkTask->setActive(false);
+  blinkTaskWash->setActive(false);
 
   Task* cIOArea = new CheckInOutAreaTask(hook, blinkTask, screen, gate); 
   cIOArea->init(200);
@@ -31,6 +31,7 @@ void setup() {
 
   schedule.addTask(cIOArea);
   schedule.addTask(blinkTask);
+  schedule.addTask(blinkTaskWash);
   schedule.addTask(washArea);
 }
 

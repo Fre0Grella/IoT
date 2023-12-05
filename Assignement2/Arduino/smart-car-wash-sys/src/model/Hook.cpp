@@ -8,6 +8,7 @@ Hook::Hook() {
 void Hook::init() {
     procedureFinished = false;
     inWashingArea = false;
+    washCount = 0;
 }
 
 void Hook::enterWashingArea() {
@@ -17,6 +18,7 @@ void Hook::enterWashingArea() {
 void Hook::exitWashingArea() {
     inWashingArea = false;
     procedureFinished = true;
+    washCount++;
 }
 
 bool Hook::washing() {
@@ -25,6 +27,7 @@ bool Hook::washing() {
 
 void Hook::finishProcess() {
     procedureFinished = true;
+    
 } 
 
 void Hook::restartProcess() {
@@ -33,4 +36,8 @@ void Hook::restartProcess() {
 
 bool Hook::isProcessFinished() {
     return procedureFinished;
+}
+
+int Hook::getWashCount() {
+    return washCount;
 }

@@ -17,8 +17,7 @@ void CheckInOutAreaTask::tick() {
     float dist;
     switch (state) {
     case SLEEP:
-    //TODO aggiungere una vera sleep 
-        Serial.println("sto cazz");
+        
         screen->backLightOff();
         screen->clear();
         attachInterrupt(digitalPinToInterrupt(PIR),[]() {}, CHANGE);
@@ -27,15 +26,17 @@ void CheckInOutAreaTask::tick() {
         sleep_mode();
         sleep_disable();
         detachInterrupt(digitalPinToInterrupt(PIR));
-        Serial.println("sto cazz2");
+        Serial.println("Wake Up");
         screen->backLighOn();
         if(!led1->isOn()){
             led1->switchOn();
         }
         screen->print("Welcome!");
         setState(WELCOME);
+        Serial.println("Welcome area");
         break;
     case WELCOME:
+        
         if(timeInState() > N1) {
             led1->switchOff();
             blink->setActive(true);
@@ -43,12 +44,13 @@ void CheckInOutAreaTask::tick() {
             gate->openGate();
             this->elapsedTime = millis();
             setState(CAR_WAIT);
+            Serial.println("Wait for the car to enter the washing area");
             this->elapsedTime = millis();
         }
         break;
     case CAR_WAIT:
         dist = distance->getDistance();
-        Serial.println(dist);
+        
         if(dist <= MIN_DIST && dist >= 0) {
             this->min = true;
             if (this->max) {
@@ -61,6 +63,7 @@ void CheckInOutAreaTask::tick() {
                 screen->print("Ready to Wash");
                 gate->closeGate();
                 hook->enterWashingArea();
+                Serial.println("Enter the Washing area, wait to start");
                 led3->switchOff();
                 setState(EXIT);
             }

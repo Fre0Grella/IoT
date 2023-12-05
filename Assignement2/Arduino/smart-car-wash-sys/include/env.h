@@ -21,7 +21,7 @@
 
 #define N1 5000 
 #define N2 4000
-#define N3 7000
+#define N3 8000
 #define N4 3000
 
 
@@ -37,6 +37,6 @@ static Gate* gate = new Gate(GATE);
 static Button* but = new ButtonImpl(BUT);
 static Sonar* distance = new Sonar(SONAR_ECHO, SONAR_TRG, 10000);
 //static Pir* detector = new Pir(PIR);
-static TemperatureSensor* temp = new TemperatureSensor(TEMPSENSOR);
+static TemperatureSensor* temperature = new TemperatureSensor(TEMPSENSOR);
 
 #endif

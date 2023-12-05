@@ -4,6 +4,7 @@ WashingAreaTask::WashingAreaTask(Hook* hook, Task* blink, LCD* screen) {
     this->hook = hook;
     this->blink = blink; 
     this->screen = screen;
+    this->elapsedTime = 0;
     setState(WAIT_START);
 }
 
@@ -16,21 +17,31 @@ void WashingAreaTask::tick() {
             but->sync();
             if(but->isPressed()) {
                 blink->setActive(true);
+                this->elapsedTime = millis();
                 setState(START_WASHING);
             }
         }
         break;
     
     case START_WASHING:
-        // this "if" is for displaying the countdown
+        //countdown
         screen->print(String((N3 - timeInState())/1000, DEC));
-    
-        if (timeInState() > N3) {
+
+        if (timeInState() >= N3) {
             blink->setActive(false);
             setState(END_WASHING);
         }
 
-        //TODO add temperature control for enter maintenance mode
+        //TODO here it should write the temperature on the Gui
+
+        //goes in maintainance if it is in overheat for N4 seconds
+        if (temperature->isOverheat(MAX_TEMP)) {
+            if (millis() - this->elapsedTime >= N4) {
+                setState(MAINTENANCE);
+            }
+        } else {
+            this->elapsedTime = millis();
+        }
         break;
 
     case END_WASHING:
@@ -48,18 +59,15 @@ void WashingAreaTask::tick() {
             led3->switchOff();
             gate->closeGate();
             setState(WAIT_START);
-        }
-        if (temp->isOverheat(MAX_TEMP)){
-            if (timeInState() >= N4) {
-                setState(MAINTENANCE);
-            }
         } 
         break;
     case MAINTENANCE:
         screen->print("Detected a Problem - Please Wait");
 
-        //TODO Write the gui for the maintenance
+        //TODO here it should display Maintainance required on the PC.
 
+        //TODO if the button in pressed on the gui it does those two thing.
+        this->elapsedTime = millis();
         setState(START_WASHING);
         break;
 

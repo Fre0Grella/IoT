@@ -29,7 +29,6 @@ void CheckInOutAreaTask::tick() {
             led1->switchOn();
         }
         screen->print("Welcome!");
-        this->elapsedTime = millis();
         setState(WELCOME);
         break;
     case WELCOME:
@@ -38,6 +37,7 @@ void CheckInOutAreaTask::tick() {
             blink->setActive(true);
             screen->print("Proceed to the Washing Area");
             gate->openGate();
+            this->elapsedTime = millis();
             setState(CAR_WAIT);
         }
         break;

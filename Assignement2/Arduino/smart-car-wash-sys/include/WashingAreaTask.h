@@ -10,6 +10,7 @@ class WashingAreaTask: public Task{
         Hook* hook;
         Task* blink;
         LCD* screen;
+        long elapsedTime;
         enum States{WAIT_START,START_WASHING, END_WASHING, WAIT_EXIT, MAINTENANCE} state;
         long stateTimeStamp;
         void setState(States state);

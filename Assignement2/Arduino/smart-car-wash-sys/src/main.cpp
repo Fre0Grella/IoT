@@ -11,7 +11,7 @@
 Scheduler schedule;
 void setup() {
   Serial.begin(9600);
-  schedule.init(200);
+  schedule.init(90);
   screen->init();
   gate->on();
   Hook* hook = new Hook();

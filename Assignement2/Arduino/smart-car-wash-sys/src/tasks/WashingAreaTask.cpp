@@ -22,20 +22,20 @@ void WashingAreaTask::tick() {
         break;
     
     case START_WASHING:
-        // this "if" is for displaying the countdown
+        this->elapsedTime = millis();
         screen->print(String((N3 - timeInState())/1000, DEC));
-    
+        Serial.println(temperature->detectTemperature());
         if (timeInState() > N3) {
             blink->setActive(false);
             setState(END_WASHING);
         }
         if (temperature->isOverheat(MAX_TEMP)){
-            if (timeInState() >= N4) {
+            if (millis() - elapsedTime >= N4) {
                 setState(MAINTENANCE);
             }
-        } 
-        Serial.println(temperature->detectTemperature());
-
+        } else {
+            this->elapsedTime = millis();
+        }
         break;
 
     case END_WASHING:
@@ -48,11 +48,16 @@ void WashingAreaTask::tick() {
         break;
 
     case WAIT_EXIT:
-        if(distance->getDistance() >= MAX_DIST && timeInState() >= N4) { 
+        this->elapsedTime = millis();
+        if(distance->getDistance() >= MAX_DIST) {
+            if (millis() - elapsedTime > N4) {
             hook->exitWashingArea();
             led3->switchOff();
             gate->closeGate();
             setState(WAIT_START);
+            } 
+        } else {
+            elapsedTime = millis();
         }
         break;
     case MAINTENANCE:

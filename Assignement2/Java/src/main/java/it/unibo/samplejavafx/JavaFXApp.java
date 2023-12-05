@@ -17,7 +17,7 @@ public final class JavaFXApp extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        //serial = new SerialCommChannel(null, 9600);
+        serial = new SerialCommChannel("COM7", 9600);
         Text text = new Text();      
         Text text2 = new Text();     
         int count = 0; 
@@ -41,15 +41,13 @@ public final class JavaFXApp extends Application {
         primaryStage.setTitle("Button Example");
         primaryStage.setScene(scene);
         primaryStage.show();
-        /* 
+        
         var thread = new Thread(() -> {
             while (true) {
                 try {
                     var msg = serial.receiveMsg();
 
                     if (true) {
-
-
 
                     }
                     Thread.sleep(250);
@@ -60,7 +58,7 @@ public final class JavaFXApp extends Application {
             }
         });
         thread.start();
-        */
+        
     }
 
     /**

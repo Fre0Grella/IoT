@@ -30,14 +30,14 @@ void WashingAreaTask::tick() {
         if (timeInState() > N3) {
             blink->setActive(false);
             setState(END_WASHING);
-            Serial.println("Whasing complete");
+            Serial.println("Washing complete");
         }
         if (temperature->isOverheat(MAX_TEMP)){
             
-            if (millis() - elapsedTime >= 1000) {
+            if (millis() - elapsedTime >= N4) {
                 setState(MAINTENANCE);
                 blink->setActive(false);
-                Serial.println("OVERHEAT going in maintenance mode");
+                //Serial.println("OVERHEAT going in maintenance mode");
             }
         } else {
             this->elapsedTime = millis();
@@ -60,6 +60,7 @@ void WashingAreaTask::tick() {
         if(distance->getDistance() >= MAX_DIST || distance->getDistance() == NO_OBJ_DETECTED) {
             if (millis() - elapsedTime > N4) {
             hook->exitWashingArea();
+            Serial.print("Car washed:");
             Serial.println(hook->getWashCount());
             Serial.println("Going to Sleep");
             led3->switchOff();

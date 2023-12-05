@@ -8,6 +8,7 @@ class TemperatureSensor {
     bool isOverheat(int max_temp);
 
    private:
+    float value;
     int pin;
 };
 

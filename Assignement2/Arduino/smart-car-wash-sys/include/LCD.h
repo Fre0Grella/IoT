@@ -15,5 +15,7 @@ public:
     void init();
     void print(String string);
     void clear();
+    void backLighOn();
+    void backLightOff();
 };
 #endif

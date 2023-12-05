@@ -1,4 +1,4 @@
-#include "LCD.h"
+#include <LCD.h>
 LCD::LCD() {
     lcd = new LiquidCrystal_I2C(0x27,20,4);
 }
@@ -13,8 +13,6 @@ void LCD::init() {
 }
 
 void LCD::print(String string) {
-    //[TODO]: check lenght for avoiding overflow of the screen
-   //int length = string.length();
     lcd->clear();
     lcd->print(string);
 }
@@ -22,4 +20,14 @@ void LCD::print(String string) {
 void LCD::clear() {
     lcd->clear();
 }
+
+void LCD::backLighOn() {
+    lcd->backlight();
+}
+
+void LCD::backLightOff() {
+    lcd->noBacklight();
+}
+
+
 

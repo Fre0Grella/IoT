@@ -11,8 +11,9 @@
 Scheduler schedule;
 void setup() {
   Serial.begin(9600);
-  schedule.init(200);
+  schedule.init(90);
   screen->init();
+  gate->on();
   Hook* hook = new Hook();
   hook->init();
 
@@ -34,5 +35,9 @@ void setup() {
 }
 
 void loop() {
+  //Serial.println(distance->getDistance());
+  //Serial.println(temperature->detectTemperature());
+  //delay(1000);
   schedule.schedule();
+  //Serial.println(temp->detectTemperature());
 }

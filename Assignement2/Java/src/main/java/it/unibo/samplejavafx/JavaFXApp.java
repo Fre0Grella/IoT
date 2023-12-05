@@ -1,9 +1,11 @@
 package it.unibo.samplejavafx;
 
 import javafx.application.Application;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.text.Font;
+import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -11,13 +13,54 @@ import javafx.stage.Stage;
  */
 public final class JavaFXApp extends Application {
 
+    SerialCommChannel serial;
+
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        final Label message = new Label("Hello, JavaFX!"); 
-        message.setFont(new Font(100));
-        primaryStage.setScene(new Scene(message));
-        primaryStage.setTitle("Hello");
+        //serial = new SerialCommChannel(null, 9600);
+        Text text = new Text();      
+        Text text2 = new Text();     
+        int count = 0; 
+        float temperature = 0;
+        text.setText("total number of washes done: " + count); 
+        text2.setText("Temperature in washing: " + temperature); 
+        text.setX(325); 
+        text.setY(50); 
+        text2.setX(325); 
+        text2.setY(100); 
+        //Creating a Button
+        Button button = new Button();
+        //Setting text to the button
+        button.setText("MAINTENANCE REQUIRED");
+        //Setting the location of the button
+        button.setTranslateX(325);
+        button.setTranslateY(300);
+        //Setting the stage
+        Group root = new Group(button, text, text2);
+        Scene scene = new Scene(root, 800, 800, Color.WHITE);
+        primaryStage.setTitle("Button Example");
+        primaryStage.setScene(scene);
         primaryStage.show();
+        /* 
+        var thread = new Thread(() -> {
+            while (true) {
+                try {
+                    var msg = serial.receiveMsg();
+
+                    if (true) {
+
+
+
+                    }
+                    Thread.sleep(250);
+                    break;
+                } catch(InterruptedException e) {
+                    System.err.println(e);
+                } 
+            }
+        });
+        thread.start();
+        */
     }
 
     /**

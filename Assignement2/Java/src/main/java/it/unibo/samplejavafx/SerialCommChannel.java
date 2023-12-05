@@ -1,3 +1,5 @@
+
+package it.unibo.samplejavafx;
 import java.util.concurrent.*;
 import jssc.*;
 
@@ -49,7 +51,6 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
 
 	@Override
 	public String receiveMsg() throws InterruptedException {
-		// TODO Auto-generated method stub
 		return queue.take();
 	}
 

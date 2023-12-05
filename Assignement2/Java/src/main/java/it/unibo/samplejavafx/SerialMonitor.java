@@ -1,3 +1,4 @@
+package it.unibo.samplejavafx;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import jssc.*;

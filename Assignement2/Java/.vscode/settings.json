@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "src/lib/jssc-2.9.4.jar"
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
+}

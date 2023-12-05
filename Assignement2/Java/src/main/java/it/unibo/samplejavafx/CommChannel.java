@@ -1,4 +1,4 @@
-
+package it.unibo.samplejavafx;
 /**
  * Simple interface for an async msg communication channel
  * @author aricci

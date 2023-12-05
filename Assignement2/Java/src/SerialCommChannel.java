@@ -1,5 +1,3 @@
-package esiot.module_lab_2_3;
-
 import java.util.concurrent.*;
 import jssc.*;
 

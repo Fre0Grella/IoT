@@ -1,5 +1,3 @@
-package esiot.module_lab_2_3;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import jssc.*;
